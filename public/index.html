@@ -9,8 +9,9 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400;1,700&family=Poppins:wght@300;400;600&display=swap');
         
-        body { font-family: 'Poppins', sans-serif; overflow-x: hidden; }
+        body { font-family: 'Poppins', sans-serif; overflow-x: hidden; background-color: #fffcfc; }
         
+        /* Premium Serif Font for Headings */
         .hero-title { 
             font-family: 'Playfair Display', serif; 
             font-weight: 700;
@@ -19,16 +20,22 @@
 
         .serif-font { font-family: 'Playfair Display', serif; }
         
+        /* Smooth Gradient Overlay for Hero */
         .hero-overlay {
-            background: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.2));
+            background: linear-gradient(to bottom, rgba(0,0,0,0.45), rgba(0,0,0,0.25));
         }
 
         .text-shadow-lg {
-            text-shadow: 0px 4px 10px rgba(0, 0, 0, 0.4);
+            text-shadow: 0px 4px 15px rgba(0, 0, 0, 0.4);
         }
+
+        /* Custom Scrollbar for Premium Feel */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #b91c1c; border-radius: 10px; }
     </style>
 </head>
-<body class="bg-[#fffcfc]">
+<body>
 
     <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b">
         <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
@@ -36,24 +43,29 @@
                 <img src="https://i.ibb.co.com/p68Bsn52/Gemini-Generated-Image-uph57euph57euph5-removebg-preview.png" class="h-10" alt="SORA Logo">
                 <span class="text-2xl font-bold tracking-tighter text-red-700 uppercase">SORA</span>
             </div>
-            <div class="hidden md:flex gap-8 font-medium text-[10px] tracking-[0.3em] text-gray-700">
-                <a href="#" class="hover:text-red-700 transition">HOME</a>
-                <a href="#" class="hover:text-red-700 transition">BANARASI</a>
-                <a href="#" class="hover:text-red-700 transition">JEWELRY</a>
-                <a href="#" class="hover:text-red-700 transition">COLLECTION</a>
+            <div class="hidden md:flex gap-8 font-medium text-[10px] tracking-[0.3em] text-gray-700 uppercase">
+                <a href="#" class="hover:text-red-700 transition duration-300">Home</a>
+                <a href="#" class="hover:text-red-700 transition duration-300">Banarasi</a>
+                <a href="#" class="hover:text-red-700 transition duration-300">Jewelry</a>
+                <a href="#" class="hover:text-red-700 transition duration-300">Collection</a>
             </div>
         </div>
     </nav>
 
     <section class="relative h-screen flex items-center justify-center pt-16">
         <div class="absolute inset-0 z-0">
-            <img src="https://i.ibb.co.com/NgJW2Pyk/Celebrating-the-Essence-of-Womanhood-2.png" class="w-full h-full object-cover" alt="Graceful Banarasi">
+            <img src="https://i.ibb.co.com/NgJW2Pyk/Celebrating-the-Essence-of-Womanhood-2.png" class="w-full h-full object-cover" alt="SORA Hero Image">
             <div class="absolute inset-0 hero-overlay"></div>
         </div>
-        <div class="relative z-10 text-center px-4" data-aos="zoom-in" data-aos-duration="2000">
+        <div class="relative z-10 text-center px-4" data-aos="zoom-in" data-aos-duration="2500">
+            <div class="flex justify-center mb-8">
+                <img src="https://i.ibb.co.com/p68Bsn52/Gemini-Generated-Image-uph57euph57euph5-removebg-preview.png" class="h-24 md:h-32 drop-shadow-2xl brightness-110" alt="Main SORA Logo">
+            </div>
+            
             <h1 class="text-6xl md:text-9xl text-white hero-title mb-4 text-shadow-lg">
                 SORA Collection
             </h1>
+            
             <p class="text-xl md:text-3xl italic text-white/95 serif-font tracking-wide drop-shadow-md">
                 Defining Your Grace, Every Single Day.
             </p>
@@ -71,43 +83,57 @@
     <section class="relative min-h-[80vh] flex items-center overflow-hidden bg-white py-12">
         <div class="container mx-auto px-6 grid md:grid-cols-2 items-center gap-12">
             <div class="order-2 md:order-1" data-aos="fade-right">
-                <img src="https://i.ibb.co.com/b5jBn6Km/Untitled-design-4.png" class="rounded-2xl shadow-2xl" alt="SORA Jewelry">
+                <img src="https://i.ibb.co.com/b5jBn6Km/Untitled-design-4.png" class="rounded-2xl shadow-2xl" alt="SORA Exclusive Jewelry">
             </div>
             <div class="order-1 md:order-2 space-y-6" data-aos="fade-left">
-                <h2 class="text-5xl font-bold text-gray-900 leading-tight serif-font">SORA Exclusive<br><span class="text-red-700 italic">Bangle Collection</span></h2>
+                <h2 class="text-5xl font-bold text-gray-900 leading-tight serif-font uppercase">SORA Exclusive<br><span class="text-red-700 italic">Bangle Collection</span></h2>
                 <p class="text-gray-600 text-lg font-light">
                     No look is complete without the perfect adornment for your hands. Our antique-designed bangles create a perfect contrast with your Saree. Each design reflects meticulous craftsmanship and pro-level artistry.
                 </p>
-                <button class="px-8 py-4 border border-red-700 text-red-700 font-bold hover:bg-red-700 hover:text-white transition-all tracking-[0.2em] text-[10px]">EXPLORE JEWELRY</button>
+                <button class="px-8 py-4 border-2 border-red-700 text-red-700 font-bold hover:bg-red-700 hover:text-white transition-all duration-500 tracking-[0.2em] text-[10px] uppercase">
+                    Explore Jewelry
+                </button>
             </div>
         </div>
     </section>
 
-    <section class="py-20 bg-[#fffcfc]">
+    <section class="py-20">
         <div class="max-w-7xl mx-auto px-6" data-aos="fade-up">
-            <img src="https://i.ibb.co.com/84Nk97ps/Untitled-design-5.png" class="w-full rounded-3xl shadow-xl" alt="SORA Style">
+            <div class="overflow-hidden rounded-3xl shadow-2xl border-4 border-white">
+                <img src="https://i.ibb.co.com/84Nk97ps/Untitled-design-5.png" class="w-full h-full object-cover transform hover:scale-105 transition duration-1000" alt="SORA Lifestyle Banner">
+            </div>
         </div>
     </section>
 
     <footer class="bg-gray-950 text-white py-20">
         <div class="max-w-7xl mx-auto px-6 text-center">
-            <img src="https://i.ibb.co.com/p68Bsn52/Gemini-Generated-Image-uph57euph57euph5-removebg-preview.png" class="h-12 mx-auto mb-8 brightness-0 invert opacity-80" alt="Footer Logo">
-            <h2 class="text-2xl font-serif mb-6 tracking-[0.4em] uppercase">SORA COLLECTION</h2>
-            <p class="text-gray-500 mb-10 max-w-md mx-auto text-sm font-light">Dhaka, Bangladesh | Export Quality Sarees & Jewelry</p>
-            <div class="flex justify-center gap-12 text-[10px] tracking-[0.3em] font-medium text-gray-600">
-                <a href="#" class="hover:text-white transition">FACEBOOK</a>
-                <a href="#" class="hover:text-white transition">INSTAGRAM</a>
-                <a href="#" class="hover:text-white transition">WHATSAPP</a>
+            <img src="https://i.ibb.co.com/p68Bsn52/Gemini-Generated-Image-uph57euph57euph5-removebg-preview.png" class="h-12 mx-auto mb-8 brightness-0 invert opacity-70" alt="SORA Footer Logo">
+            <h2 class="text-2xl font-serif mb-6 tracking-[0.5em] uppercase font-light">SORA COLLECTION</h2>
+            <p class="text-gray-500 mb-10 max-w-md mx-auto text-sm font-light tracking-wide">
+                Dhaka, Bangladesh | Export Quality Sarees & Jewelry
+            </p>
+            <div class="flex justify-center gap-12 text-[10px] tracking-[0.3em] font-medium text-gray-600 uppercase">
+                <a href="#" class="hover:text-white transition duration-300">Facebook</a>
+                <a href="#" class="hover:text-white transition duration-300">Instagram</a>
+                <a href="#" class="hover:text-white transition duration-300">WhatsApp</a>
             </div>
+            <p class="mt-16 text-[9px] text-gray-700 tracking-widest uppercase">&copy; 2026 SORA Collection. All Rights Reserved.</p>
         </div>
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
+        // Initialize Animations
         AOS.init({
             duration: 1500,
             once: false,
             mirror: true
+        });
+
+        // Optional: Smooth parallax effect for Hero image on scroll
+        window.addEventListener('scroll', function() {
+            let offset = window.pageYOffset;
+            document.querySelector('.z-0 img').style.transform = 'translateY(' + (offset * 0.4) + 'px)';
         });
     </script>
 </body>
