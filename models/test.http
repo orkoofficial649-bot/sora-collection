@@ -1,0 +1,18 @@
+### Get Welcome Message
+GET http://localhost:5000/
+
+### Create a New Product (Sharee)
+POST http://localhost:5000/api/products
+Content-Type: application/json
+
+{
+    "name": "Katan Sharee",
+    "category": "Sharee",
+    "price": 5500,
+    "description": "Exclusive SORA Collection Katan Sharee",
+    "imageUrl": "https://example.com/katan.jpg",
+    "stock": 20
+}
+
+### Get All Products
+GET http://localhost:5000/api/products
