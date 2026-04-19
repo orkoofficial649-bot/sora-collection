@@ -29,26 +29,26 @@
         </div>
 
         <div class="p-6 md:p-12">
-            <h2 class="text-xl font-bold text-gray-800 text-center mb-8 border-b border-gray-100 pb-5">অর্ডার নিশ্চিত করতে ফর্মটি পূরণ করুন</h2>
+            <h2 class="text-xl font-bold text-gray-800 text-center mb-8 border-b border-gray-100 pb-5">অর্ডার নিশ্চিত করতে নিচের ফর্মটি পূরণ করুন</h2>
 
             <form id="orderForm" class="space-y-6">
-                <div class="space-y-1">
-                    <label class="text-[11px] font-bold text-gray-400 uppercase ml-1">আপনার পূর্ণ নাম</label>
+                <div>
+                    <label class="text-[11px] font-bold text-gray-400 uppercase ml-1 block mb-1">আপনার পূর্ণ নাম *</label>
                     <input type="text" name="name" required class="input-style" placeholder="উদা: আরকো বর্মন">
                 </div>
 
-                <div class="space-y-1">
-                    <label class="text-[11px] font-bold text-gray-400 uppercase ml-1">সচল ফোন নম্বর</label>
-                    <input type="tel" name="phone" required class="input-style" placeholder="017XXXXXXXX">
+                <div>
+                    <label class="text-[11px] font-bold text-gray-400 uppercase ml-1 block mb-1">সচল ফোন নম্বর * (১১ ডিজিট)</label>
+                    <input type="tel" name="phone" pattern="[0-9]{11}" maxlength="11" required title="অনুগ্রহ করে ১১ ডিজিটের সচল মোবাইল নম্বর দিন" class="input-style" placeholder="01XXXXXXXXX">
                 </div>
 
-                <div class="space-y-1">
-                    <label class="text-[11px] font-bold text-gray-400 uppercase ml-1">পুরো ঠিকানা</label>
+                <div>
+                    <label class="text-[11px] font-bold text-gray-400 uppercase ml-1 block mb-1">পুরো ঠিকানা *</label>
                     <textarea name="address" required rows="3" class="input-style" placeholder="গ্রাম/রাস্তা, থানা, জেলা"></textarea>
                 </div>
 
-                <div class="space-y-1">
-                    <label class="text-[11px] font-bold text-gray-400 uppercase ml-1">পেমেন্ট মাধ্যম</label>
+                <div>
+                    <label class="text-[11px] font-bold text-gray-400 uppercase ml-1 block mb-1">পেমেন্ট মাধ্যম *</label>
                     <select name="payment_method" required class="input-style bg-white appearance-none">
                         <option value="">সিলেক্ট করুন</option>
                         <option value="bKash">bKash (বিকাশ)</option>
@@ -59,25 +59,31 @@
 
                 <div class="bg-red-50 p-6 rounded-3xl border border-red-100 space-y-4">
                     <div class="text-center">
-                        <p class="text-xs text-red-700 font-bold mb-1">ডেলিভারি চার্জ অগ্রিম প্রদান করুন</p>
+                        <p class="text-xs text-red-700 font-bold mb-1 uppercase tracking-tighter">ডেলিভারি চার্জ অগ্রিম প্রদান করুন</p>
                         <p class="text-[10px] text-gray-500 font-medium italic">(ঢাকার ভিতরে ১০০ টাকা | ঢাকার বাইরে ১৩০ টাকা)</p>
                     </div>
                     
-                    <div class="flex items-center justify-between bg-white p-3 rounded-2xl border border-red-200">
-                        <span id="paymentNum" class="font-bold text-gray-800 tracking-wider text-lg ml-2">01XXXXXXXXX</span>
-                        <button type="button" onclick="copyNumber()" class="text-[10px] bg-red-700 text-white px-4 py-2 rounded-xl font-bold hover:bg-red-800 transition uppercase tracking-widest">Copy</button>
+                    <div class="flex items-center justify-between bg-white p-3 rounded-2xl border border-red-200 shadow-sm">
+                        <span id="paymentNum" class="font-bold text-gray-800 tracking-wider text-lg ml-2">01328071736</span>
+                        <button type="button" onclick="copyNumber()" class="text-[10px] bg-red-700 text-white px-4 py-2 rounded-xl font-bold hover:bg-red-800 transition uppercase tracking-widest active:scale-90">Copy</button>
                     </div>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                    <div class="space-y-1">
-                        <label class="text-[11px] font-bold text-gray-400 uppercase ml-1">Transaction ID</label>
-                        <input type="text" name="trxid" required class="input-style" placeholder="ABC123XYZ">
+                    <div>
+                        <label class="text-[11px] font-bold text-gray-400 uppercase ml-1 block mb-1">Transaction ID *</label>
+                        <input type="text" name="trxid" required class="input-style" placeholder="উদা: ABC123XYZ">
                     </div>
-                    <div class="space-y-1">
-                        <label class="text-[11px] font-bold text-gray-400 uppercase ml-1">আপনার পেমেন্ট নম্বর</label>
-                        <input type="tel" name="payment_number" required class="input-style" placeholder="01XXXXXXXXX">
+                    <div>
+                        <label class="text-[11px] font-bold text-gray-400 uppercase ml-1 block mb-1">আপনার পেমেন্ট নম্বর * (১১ ডিজিট)</label>
+                        <input type="tel" name="payment_number" pattern="[0-9]{11}" maxlength="11" required title="যে নম্বর থেকে টাকা পাঠিয়েছেন সেটি দিন" class="input-style" placeholder="01XXXXXXXXX">
                     </div>
+                </div>
+
+                <div>
+                    <label class="text-[11px] font-bold text-gray-400 uppercase ml-1 block mb-1">পেমেন্ট স্ক্রিনশট আপলোড করুন *</label>
+                    <input type="file" id="screenshot" accept="image/*" required class="input-style bg-white pt-2 text-xs">
+                    <input type="hidden" name="screenshot_data" id="screenshot_data">
                 </div>
 
                 <button type="submit" id="submitBtn" class="w-full bg-red-700 text-white font-bold py-5 rounded-2xl hover:bg-red-800 transition-all active:scale-[0.98] text-sm tracking-[0.2em] uppercase mt-4 btn-shadow">
@@ -99,7 +105,19 @@
             });
         }
 
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbxbzzY58sxvhoOTfn5kvLgK2QIsNkAHew6NYUDgN4epIU81oDRl9OWsPCykICFc1LXH5Q/exec';
+        // Convert image to Base64
+        document.getElementById('screenshot').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function() {
+                    document.getElementById('screenshot_data').value = reader.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbwUruRZFjWV5uhvfpa-7UYk2MO0Yc3iSwTImThFEY0rz5YfW2lnOU3SUaPaRRaioAnM3A/exec';
         const form = document.getElementById('orderForm');
         const btn = document.getElementById('submitBtn');
 
