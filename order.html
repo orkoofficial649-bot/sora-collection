@@ -21,7 +21,6 @@
 
     <div class="max-w-xl mx-auto bg-white shadow-2xl rounded-[2.5rem] overflow-hidden border border-red-50 mb-10">
         <div class="bg-red-700 p-8 text-center text-white">
-            <img src="https://i.ibb.co.com/p68Bsn52/Gemini-Generated-Image-uph57euph57euph5-removebg-preview.png" class="h-16 mx-auto mb-4 brightness-0 invert" alt="SORA Logo">
             <h1 class="text-3xl serif uppercase tracking-[0.2em]">SORA Collection</h1>
             <p class="text-[10px] opacity-80 mt-2 font-light tracking-[0.3em] uppercase">Defining Your Grace, Every Single Day.</p>
         </div>
@@ -37,50 +36,40 @@
                     </div>
                     <div>
                         <label class="text-[10px] font-bold text-gray-400 uppercase ml-1">ফোন নম্বর * (১১ ডিজিট)</label>
-                        <input type="tel" name="phone" pattern="[0-9]{11}" maxlength="11" required title="১১ ডিজিটের নম্বর দিন" class="input-style" placeholder="01XXXXXXXXX">
+                        <input type="tel" name="phone" pattern="[0-9]{11}" maxlength="11" required class="input-style" placeholder="01XXXXXXXXX">
                     </div>
                 </div>
 
                 <div class="space-y-4 bg-gray-50 p-5 rounded-2xl border border-gray-100">
-                    <p class="text-[11px] font-bold text-red-700 uppercase mb-2 italic">ডেলিভারি ঠিকানা</p>
                     <div>
                         <label class="text-[10px] font-bold text-gray-400 uppercase ml-1">গ্রাম / মহল্লা / রোড নং *</label>
                         <input type="text" name="village_road" required class="input-style" placeholder="ঠিকানা লিখুন">
                     </div>
                     <div class="grid grid-cols-2 gap-4">
-                        <div>
-                            <label class="text-[10px] font-bold text-gray-400 uppercase ml-1">থানা *</label>
-                            <input type="text" name="thana" required class="input-style" placeholder="থানা">
-                        </div>
-                        <div>
-                            <label class="text-[10px] font-bold text-gray-400 uppercase ml-1">জেলা *</label>
-                            <input type="text" name="district" required class="input-style" placeholder="জেলা">
-                        </div>
+                        <input type="text" name="thana" required class="input-style" placeholder="থানা *">
+                        <input type="text" name="district" required class="input-style" placeholder="জেলা *">
                     </div>
                 </div>
 
                 <div>
-                    <label class="text-[10px] font-bold text-gray-400 uppercase ml-1">পণ্যটির স্ক্রিনশট দিন (যেটি অর্ডার করতে চান) *</label>
+                    <label class="text-[10px] font-bold text-gray-400 uppercase ml-1">পণ্যটির স্ক্রিনশট দিন *</label>
                     <input type="file" id="product_ss" accept="image/*" required class="input-style bg-white pt-2 text-xs">
                     <input type="hidden" name="product_screenshot" id="product_ss_data">
                 </div>
 
                 <div class="space-y-4">
-                    <div>
-                        <label class="text-[10px] font-bold text-gray-400 uppercase ml-1">পেমেন্ট মাধ্যম * (Send Money করুন)</label>
-                        <select id="payMethod" name="payment_method" required class="input-style bg-white appearance-none">
-                            <option value="">সিলেক্ট করুন</option>
-                            <option value="bKash">bKash (বিকাশ)</option>
-                            <option value="Nagad">Nagad (নগদ)</option>
-                            <option value="Rocket">Rocket (রকেট)</option>
-                        </select>
-                    </div>
+                    <select id="payMethod" name="payment_method" required class="input-style bg-white">
+                        <option value="">পেমেন্ট মাধ্যম সিলেক্ট করুন *</option>
+                        <option value="bKash">bKash (বিকাশ)</option>
+                        <option value="Nagad">Nagad (নগদ)</option>
+                        <option value="Rocket">Rocket (রকেট)</option>
+                    </select>
 
                     <div id="paymentInfoBox" class="hidden bg-red-50 p-5 rounded-2xl border border-red-100 space-y-3">
-                        <p class="text-xs text-red-700 font-bold text-center">ডেলিভারি চার্জ (ঢাকা ১০০/- | বাইরে ১৩০/-) <span class="underline">Send Money</span> করুন:</p>
+                        <p class="text-xs text-red-700 font-bold text-center uppercase tracking-tighter">এই নাম্বারে Send Money করুন:</p>
                         <div class="flex items-center justify-between bg-white p-3 rounded-xl border border-red-200">
                             <span id="displayNum" class="font-bold text-gray-800 text-lg ml-2 tracking-widest"></span>
-                            <button type="button" onclick="copyNum()" class="text-[10px] bg-red-700 text-white px-4 py-2 rounded-lg font-bold active:scale-90">COPY</button>
+                            <button type="button" onclick="copyNum()" class="text-[10px] bg-red-700 text-white px-4 py-2 rounded-lg font-bold">COPY</button>
                         </div>
                     </div>
                 </div>
@@ -104,11 +93,48 @@
     </div>
 
     <script>
+        // 1. Image Compression Logic (Fixes the half-image issue)
+        function handleImage(inputId, hiddenId) {
+            document.getElementById(inputId).addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (!file) return;
+
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    const img = new Image();
+                    img.onload = function() {
+                        const canvas = document.createElement('canvas');
+                        const MAX_WIDTH = 800; 
+                        let width = img.width;
+                        let height = img.height;
+
+                        if (width > MAX_WIDTH) {
+                            height *= MAX_WIDTH / width;
+                            width = MAX_WIDTH;
+                        }
+
+                        canvas.width = width;
+                        canvas.height = height;
+                        const ctx = canvas.getContext('2d');
+                        ctx.drawImage(img, 0, 0, width, height);
+
+                        // Compress to 60% quality to ensure full data transmission
+                        const dataurl = canvas.toDataURL('image/jpeg', 0.6);
+                        document.getElementById(hiddenId).value = dataurl;
+                    };
+                    img.src = event.target.result;
+                };
+                reader.readAsDataURL(file);
+            });
+        }
+        handleImage('product_ss', 'product_ss_data');
+        handleImage('payment_ss', 'payment_ss_data');
+
+        // 2. Dynamic Payment Number Logic
         const payMethod = document.getElementById('payMethod');
         const infoBox = document.getElementById('paymentInfoBox');
         const displayNum = document.getElementById('displayNum');
 
-        // Dynamic Payment Logic
         payMethod.addEventListener('change', function() {
             if(this.value === 'bKash') {
                 infoBox.classList.remove('hidden');
@@ -126,20 +152,7 @@
             alert("Number Copied!");
         }
 
-        // Image to Base64
-        function handleImage(inputId, hiddenId) {
-            document.getElementById(inputId).addEventListener('change', function(e) {
-                const file = e.target.files[0];
-                if (file) {
-                    const reader = new FileReader();
-                    reader.onload = function() { document.getElementById(hiddenId).value = reader.result; };
-                    reader.readAsDataURL(file);
-                }
-            });
-        }
-        handleImage('product_ss', 'product_ss_data');
-        handleImage('payment_ss', 'payment_ss_data');
-
+        // 3. Form Submission
         const scriptURL = 'https://script.google.com/macros/s/AKfycbxNHWDt8F17SJh_ZDe2dGH2HTcEh_rufDVhPZciUue2_UFEjA9bXFC_bhnXSpzqQ4YHVw/exec';
         const form = document.getElementById('orderForm');
         const btn = document.getElementById('submitBtn');
@@ -152,7 +165,7 @@
 
             fetch(scriptURL, { method: 'POST', body: new FormData(form)})
             .then(response => {
-                alert("ধন্যবাদ! আপনার অর্ডারটি সফলভাবে গ্রহণ করা হয়েছে। শীঘ্রই আমাদের প্রতিনিধি আপনার সাথে যোগাযোগ করবেন।");
+                alert("ধন্যবাদ! আপনার অর্ডারটি সফলভাবে গ্রহণ করা হয়েছে।");
                 form.reset();
                 btn.disabled = false;
                 btn.innerText = "CONFIRM ORDER";
@@ -160,7 +173,7 @@
                 infoBox.classList.add('hidden');
             })
             .catch(error => {
-                alert("দুঃখিত, কোনো একটি সমস্যা হয়েছে। আবার চেষ্টা করুন।");
+                alert("দুঃখিত, আবার চেষ্টা করুন।");
                 btn.disabled = false;
                 btn.innerText = "CONFIRM ORDER";
                 btn.style.opacity = "1";
