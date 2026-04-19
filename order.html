@@ -9,11 +9,9 @@
     <style>
         body { font-family: 'Poppins', sans-serif; background-color: #fffcfc; }
         .serif { font-family: 'Playfair Display', serif; }
-        .glass { background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(10px); }
         .input-style { 
             width: 100%; padding: 0.85rem 1.2rem; border: 1px solid #e5e7eb; 
-            border-radius: 1rem; outline: none; transition: all 0.3s;
-            font-size: 0.95rem;
+            border-radius: 1rem; outline: none; transition: 0.3s; font-size: 0.9rem;
         }
         .input-style:focus { border-color: #b91c1c; box-shadow: 0 0 0 3px rgba(185, 28, 28, 0.1); }
         .btn-shadow { box-shadow: 0 10px 25px -5px rgba(185, 28, 28, 0.4); }
@@ -21,103 +19,128 @@
 </head>
 <body class="p-4 md:p-10">
 
-    <div class="max-w-xl mx-auto glass shadow-2xl rounded-[2.5rem] overflow-hidden border border-red-50 mb-10">
+    <div class="max-w-xl mx-auto bg-white shadow-2xl rounded-[2.5rem] overflow-hidden border border-red-50 mb-10">
         <div class="bg-red-700 p-8 text-center text-white">
             <img src="https://i.ibb.co.com/p68Bsn52/Gemini-Generated-Image-uph57euph57euph5-removebg-preview.png" class="h-16 mx-auto mb-4 brightness-0 invert" alt="SORA Logo">
             <h1 class="text-3xl serif uppercase tracking-[0.2em]">SORA Collection</h1>
             <p class="text-[10px] opacity-80 mt-2 font-light tracking-[0.3em] uppercase">Defining Your Grace, Every Single Day.</p>
         </div>
 
-        <div class="p-6 md:p-12">
-            <h2 class="text-xl font-bold text-gray-800 text-center mb-8 border-b border-gray-100 pb-5">অর্ডার নিশ্চিত করতে নিচের ফর্মটি পূরণ করুন</h2>
+        <div class="p-6 md:p-10">
+            <h2 class="text-xl font-bold text-gray-800 text-center mb-8 border-b border-gray-100 pb-5">অর্ডার নিশ্চিত করতে ফর্মটি পূরণ করুন</h2>
 
             <form id="orderForm" class="space-y-6">
-                <div>
-                    <label class="text-[11px] font-bold text-gray-400 uppercase ml-1 block mb-1">আপনার পূর্ণ নাম *</label>
-                    <input type="text" name="name" required class="input-style" placeholder="উদা: আরকো বর্মন">
-                </div>
-
-                <div>
-                    <label class="text-[11px] font-bold text-gray-400 uppercase ml-1 block mb-1">সচল ফোন নম্বর * (১১ ডিজিট)</label>
-                    <input type="tel" name="phone" pattern="[0-9]{11}" maxlength="11" required title="অনুগ্রহ করে ১১ ডিজিটের সচল মোবাইল নম্বর দিন" class="input-style" placeholder="01XXXXXXXXX">
-                </div>
-
-                <div>
-                    <label class="text-[11px] font-bold text-gray-400 uppercase ml-1 block mb-1">পুরো ঠিকানা *</label>
-                    <textarea name="address" required rows="3" class="input-style" placeholder="গ্রাম/রাস্তা, থানা, জেলা"></textarea>
-                </div>
-
-                <div>
-                    <label class="text-[11px] font-bold text-gray-400 uppercase ml-1 block mb-1">পেমেন্ট মাধ্যম *</label>
-                    <select name="payment_method" required class="input-style bg-white appearance-none">
-                        <option value="">সিলেক্ট করুন</option>
-                        <option value="bKash">bKash (বিকাশ)</option>
-                        <option value="Nagad">Nagad (নগদ)</option>
-                        <option value="Rocket">Rocket (রকেট)</option>
-                    </select>
-                </div>
-
-                <div class="bg-red-50 p-6 rounded-3xl border border-red-100 space-y-4">
-                    <div class="text-center">
-                        <p class="text-xs text-red-700 font-bold mb-1 uppercase tracking-tighter">ডেলিভারি চার্জ অগ্রিম প্রদান করুন</p>
-                        <p class="text-[10px] text-gray-500 font-medium italic">(ঢাকার ভিতরে ১০০ টাকা | ঢাকার বাইরে ১৩০ টাকা)</p>
-                    </div>
-                    
-                    <div class="flex items-center justify-between bg-white p-3 rounded-2xl border border-red-200 shadow-sm">
-                        <span id="paymentNum" class="font-bold text-gray-800 tracking-wider text-lg ml-2">01328071736</span>
-                        <button type="button" onclick="copyNumber()" class="text-[10px] bg-red-700 text-white px-4 py-2 rounded-xl font-bold hover:bg-red-800 transition uppercase tracking-widest active:scale-90">Copy</button>
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div class="space-y-4">
                     <div>
-                        <label class="text-[11px] font-bold text-gray-400 uppercase ml-1 block mb-1">Transaction ID *</label>
-                        <input type="text" name="trxid" required class="input-style" placeholder="উদা: ABC123XYZ">
+                        <label class="text-[10px] font-bold text-gray-400 uppercase ml-1">আপনার পূর্ণ নাম *</label>
+                        <input type="text" name="name" required class="input-style" placeholder="উদা: আরকো বর্মন">
                     </div>
                     <div>
-                        <label class="text-[11px] font-bold text-gray-400 uppercase ml-1 block mb-1">আপনার পেমেন্ট নম্বর * (১১ ডিজিট)</label>
-                        <input type="tel" name="payment_number" pattern="[0-9]{11}" maxlength="11" required title="যে নম্বর থেকে টাকা পাঠিয়েছেন সেটি দিন" class="input-style" placeholder="01XXXXXXXXX">
+                        <label class="text-[10px] font-bold text-gray-400 uppercase ml-1">ফোন নম্বর * (১১ ডিজিট)</label>
+                        <input type="tel" name="phone" pattern="[0-9]{11}" maxlength="11" required title="১১ ডিজিটের নম্বর দিন" class="input-style" placeholder="01XXXXXXXXX">
+                    </div>
+                </div>
+
+                <div class="space-y-4 bg-gray-50 p-5 rounded-2xl border border-gray-100">
+                    <p class="text-[11px] font-bold text-red-700 uppercase mb-2 italic">ডেলিভারি ঠিকানা</p>
+                    <div>
+                        <label class="text-[10px] font-bold text-gray-400 uppercase ml-1">গ্রাম / মহল্লা / রোড নং *</label>
+                        <input type="text" name="village_road" required class="input-style" placeholder="ঠিকানা লিখুন">
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="text-[10px] font-bold text-gray-400 uppercase ml-1">থানা *</label>
+                            <input type="text" name="thana" required class="input-style" placeholder="থানা">
+                        </div>
+                        <div>
+                            <label class="text-[10px] font-bold text-gray-400 uppercase ml-1">জেলা *</label>
+                            <input type="text" name="district" required class="input-style" placeholder="জেলা">
+                        </div>
                     </div>
                 </div>
 
                 <div>
-                    <label class="text-[11px] font-bold text-gray-400 uppercase ml-1 block mb-1">পেমেন্ট স্ক্রিনশট আপলোড করুন *</label>
-                    <input type="file" id="screenshot" accept="image/*" required class="input-style bg-white pt-2 text-xs">
-                    <input type="hidden" name="screenshot_data" id="screenshot_data">
+                    <label class="text-[10px] font-bold text-gray-400 uppercase ml-1">পণ্যটির স্ক্রিনশট দিন (যেটি অর্ডার করতে চান) *</label>
+                    <input type="file" id="product_ss" accept="image/*" required class="input-style bg-white pt-2 text-xs">
+                    <input type="hidden" name="product_screenshot" id="product_ss_data">
+                </div>
+
+                <div class="space-y-4">
+                    <div>
+                        <label class="text-[10px] font-bold text-gray-400 uppercase ml-1">পেমেন্ট মাধ্যম * (Send Money করুন)</label>
+                        <select id="payMethod" name="payment_method" required class="input-style bg-white appearance-none">
+                            <option value="">সিলেক্ট করুন</option>
+                            <option value="bKash">bKash (বিকাশ)</option>
+                            <option value="Nagad">Nagad (নগদ)</option>
+                            <option value="Rocket">Rocket (রকেট)</option>
+                        </select>
+                    </div>
+
+                    <div id="paymentInfoBox" class="hidden bg-red-50 p-5 rounded-2xl border border-red-100 space-y-3">
+                        <p class="text-xs text-red-700 font-bold text-center">ডেলিভারি চার্জ (ঢাকা ১০০/- | বাইরে ১৩০/-) <span class="underline">Send Money</span> করুন:</p>
+                        <div class="flex items-center justify-between bg-white p-3 rounded-xl border border-red-200">
+                            <span id="displayNum" class="font-bold text-gray-800 text-lg ml-2 tracking-widest"></span>
+                            <button type="button" onclick="copyNum()" class="text-[10px] bg-red-700 text-white px-4 py-2 rounded-lg font-bold active:scale-90">COPY</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <input type="text" name="trxid" required class="input-style" placeholder="Transaction ID *">
+                    <input type="tel" name="payment_number" pattern="[0-9]{11}" maxlength="11" required class="input-style" placeholder="আপনার পেমেন্ট নম্বর *">
+                </div>
+
+                <div>
+                    <label class="text-[10px] font-bold text-gray-400 uppercase ml-1">পেমেন্ট স্ক্রিনশট আপলোড করুন *</label>
+                    <input type="file" id="payment_ss" accept="image/*" required class="input-style bg-white pt-2 text-xs">
+                    <input type="hidden" name="payment_screenshot" id="payment_ss_data">
                 </div>
 
                 <button type="submit" id="submitBtn" class="w-full bg-red-700 text-white font-bold py-5 rounded-2xl hover:bg-red-800 transition-all active:scale-[0.98] text-sm tracking-[0.2em] uppercase mt-4 btn-shadow">
                     CONFIRM ORDER
                 </button>
             </form>
-            
-            <div class="mt-10 pt-6 border-t border-gray-100 text-center">
-                <p class="text-[9px] text-gray-400 uppercase tracking-[0.4em]">&copy; 2026 SORA Collection</p>
-            </div>
         </div>
     </div>
 
     <script>
-        function copyNumber() {
-            const num = document.getElementById('paymentNum').innerText;
-            navigator.clipboard.writeText(num).then(() => {
-                alert("Payment Number Copied!");
-            });
-        }
+        const payMethod = document.getElementById('payMethod');
+        const infoBox = document.getElementById('paymentInfoBox');
+        const displayNum = document.getElementById('displayNum');
 
-        // Convert image to Base64
-        document.getElementById('screenshot').addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function() {
-                    document.getElementById('screenshot_data').value = reader.result;
-                };
-                reader.readAsDataURL(file);
+        // Dynamic Payment Logic
+        payMethod.addEventListener('change', function() {
+            if(this.value === 'bKash') {
+                infoBox.classList.remove('hidden');
+                displayNum.innerText = '01821208028';
+            } else if(this.value === 'Nagad' || this.value === 'Rocket') {
+                infoBox.classList.remove('hidden');
+                displayNum.innerText = '01960848956';
+            } else {
+                infoBox.classList.add('hidden');
             }
         });
 
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbwUruRZFjWV5uhvfpa-7UYk2MO0Yc3iSwTImThFEY0rz5YfW2lnOU3SUaPaRRaioAnM3A/exec';
+        function copyNum() {
+            navigator.clipboard.writeText(displayNum.innerText);
+            alert("Number Copied!");
+        }
+
+        // Image to Base64
+        function handleImage(inputId, hiddenId) {
+            document.getElementById(inputId).addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function() { document.getElementById(hiddenId).value = reader.result; };
+                    reader.readAsDataURL(file);
+                }
+            });
+        }
+        handleImage('product_ss', 'product_ss_data');
+        handleImage('payment_ss', 'payment_ss_data');
+
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbxNHWDt8F17SJh_ZDe2dGH2HTcEh_rufDVhPZciUue2_UFEjA9bXFC_bhnXSpzqQ4YHVw/exec';
         const form = document.getElementById('orderForm');
         const btn = document.getElementById('submitBtn');
 
@@ -129,15 +152,15 @@
 
             fetch(scriptURL, { method: 'POST', body: new FormData(form)})
             .then(response => {
-                alert("ধন্যবাদ! আপনার অর্ডারটি সফলভাবে গ্রহণ করা হয়েছে। শীঘ্রই আমরা আপনার সাথে যোগাযোগ করব।");
+                alert("ধন্যবাদ! আপনার অর্ডারটি সফলভাবে গ্রহণ করা হয়েছে। শীঘ্রই আমাদের প্রতিনিধি আপনার সাথে যোগাযোগ করবেন।");
                 form.reset();
                 btn.disabled = false;
                 btn.innerText = "CONFIRM ORDER";
                 btn.style.opacity = "1";
+                infoBox.classList.add('hidden');
             })
             .catch(error => {
-                console.error('Error!', error.message);
-                alert("দুঃখিত, অর্ডারটি পাঠানো সম্ভব হয়নি। আবার চেষ্টা করুন।");
+                alert("দুঃখিত, কোনো একটি সমস্যা হয়েছে। আবার চেষ্টা করুন।");
                 btn.disabled = false;
                 btn.innerText = "CONFIRM ORDER";
                 btn.style.opacity = "1";
