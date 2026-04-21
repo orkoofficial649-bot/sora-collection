@@ -67,21 +67,19 @@
             box-shadow: 0 10px 20px -5px rgba(185, 28, 28, 0.4);
         }
         .btn-premium:hover { transform: translateY(-3px); box-shadow: 0 15px 25px -5px rgba(185, 28, 28, 0.6); }
-        .trust-item {
-            background: rgba(185, 28, 28, 0.1);
-            padding: 1.5rem;
-            border-radius: 1rem;
-            border-left: 4px solid #b91c1c;
+        
+        /* Revised Social Icon Style */
+        .social-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: transform 0.3s ease;
         }
+        .social-link:hover { transform: translateY(-5px); }
         .social-icon {
-            width: 40px;
-            height: 40px;
-            transition: transform 0.3s ease, filter 0.3s ease;
-            filter: brightness(0) invert(1); /* Makes icons white to match theme */
-        }
-        .social-icon:hover {
-            transform: scale(1.2);
-            filter: none; /* Shows original color on hover */
+            width: 45px;
+            height: 45px;
+            margin-bottom: 8px;
         }
     </style>
 </head>
@@ -126,90 +124,44 @@
         </div>
     </main>
 
-    <section class="max-w-5xl mx-auto py-10 px-5">
-        <div class="mb-16 rounded-[2.5rem] overflow-hidden shadow-2xl" data-aos="fade-in">
-            <img src="https://i.ibb.co.com/x9b5x1F/Discover-the-finest-collection-of-authentic-sarees-and-handcrafted-Kashmiri-bangles-designed-to-defi.png" alt="Sora Collection Banner" class="w-full">
-        </div>
-
-        <div class="space-y-16">
-            <div class="content-card p-8 md:p-12" data-aos="fade-up">
-                <h3 class="text-2xl md:text-3xl serif text-red-400 mb-6 border-b border-white/10 pb-4">আমাদের শাড়ি কালেকশন: ঐতিহ্যের সাথে আভিজাত্যের মিলন</h3>
-                <p class="leading-relaxed text-gray-200">
-                    "একটি শাড়ি কেবল ছয় গজ কাপড় নয়, এটি আমাদের সংস্কৃতির পরিচয়। Sora Collection-এ আমরা প্রতিটি শাড়ি বাছাই করি অত্যন্ত যত্ন সহকারে। আমাদের প্রতিটি জামদানি, সিল্ক এবং কটন শাড়িতে পাবেন নিখুঁত বুনন আর প্রিমিয়াম কোয়ালিটির নিশ্চয়তা।"
-                </p>
-            </div>
-
-            <div class="content-card p-8 md:p-12 text-right" data-aos="fade-up">
-                <h3 class="text-2xl md:text-3xl serif text-red-400 mb-6 border-b border-white/10 pb-4">কাশ্মীরি ও হ্যান্ডক্রাফটেড চুড়ি: আপনার হাতের শোভা</h3>
-                <p class="leading-relaxed text-gray-200">
-                    "Sora Collection-এর সিগনেচার কাশ্মীরি চুড়িগুলো মূলত আমাদের কারিগরদের হাতের জাদুতে তৈরি। বাজারে হাজারো নকল চুড়ির ভিড়ে আমরা আপনাকে দিচ্ছি অরিজাল মেটেরিয়াল এবং নিখুঁত ফিনিশিংয়ের গ্যারান্টি।"
-                </p>
-            </div>
-
-            <div class="content-card p-8 md:p-12" data-aos="fade-up">
-                <h3 class="text-2xl md:text-3xl serif text-red-400 mb-8 text-center uppercase tracking-widest">কেন আমাদের বিশ্বাস করবেন?</h3>
-                <div class="grid md:grid-cols-1 lg:grid-cols-3 gap-6">
-                    <div class="trust-item">
-                        <h4 class="font-bold text-white mb-2 italic">১০০% কোয়ালিটি কন্ট্রোল</h4>
-                        <p class="text-sm text-gray-300">প্রতিটি প্রোডাক্ট ডেলিভারির আগে আমরা ৩ বার কোয়ালিটি চেক করি।</p>
-                    </div>
-                    <div class="trust-item">
-                        <h4 class="font-bold text-white mb-2 italic">সরাসরি সংগ্রহ</h4>
-                        <p class="text-sm text-gray-300">আমরা কোনো মধ্যস্বত্বভোগী ছাড়া সরাসরি সোর্স থেকে পণ্য সংগ্রহ করি।</p>
-                    </div>
-                    <div class="trust-item">
-                        <h4 class="font-bold text-white mb-2 italic">স্বচ্ছতা</h4>
-                        <p class="text-sm text-gray-300">আপনি যে ছবি দেখছেন, ঠিক সেই পণ্যটিই আপনার হাতে পৌঁছাবে।</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="bg-black/40 py-12 px-5 border-y border-white/10 overflow-hidden">
-        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center space-y-10 md:space-y-0">
+    <section class="bg-black/40 py-16 px-5 border-y border-white/10">
+        <div class="max-w-4xl mx-auto text-center" data-aos="zoom-in">
+            <h4 class="serif text-2xl md:text-3xl text-yellow-500 mb-10 uppercase tracking-[0.2em]">Connect with Social Media</h4>
             
-            <div class="text-center md:text-left" data-aos="fade-right">
-                <h4 class="serif text-xl text-yellow-500 mb-4 uppercase tracking-widest">Connect with Social</h4>
-                <div class="flex justify-center md:justify-start space-x-8">
-                    <a href="https://www.facebook.com/share/1Chw6jaWm3/" target="_blank" class="flex flex-col items-center">
-                        <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" class="social-icon mb-2" alt="FB">
-                        <span class="text-[10px] uppercase tracking-widest opacity-60">Facebook</span>
-                    </a>
-                    <a href="https://www.instagram.com/soracollection.xyz?igsh=MWJzM3V2MzdlZHF5Mg==" target="_blank" class="flex flex-col items-center">
-                        <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" class="social-icon mb-2" alt="Insta">
-                        <span class="text-[10px] uppercase tracking-widest opacity-60">Instagram</span>
-                    </a>
-                </div>
-            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 justify-items-center">
+                <a href="https://www.facebook.com/share/1Chw6jaWm3/" target="_blank" class="social-link">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/2021_Facebook_icon.svg" class="social-icon" alt="Facebook">
+                    <span class="text-xs uppercase tracking-widest opacity-80">Facebook</span>
+                </a>
+                
+                <a href="https://www.instagram.com/soracollection.xyz?igsh=MWJzM3V2MzdlZHF5Mg==" target="_blank" class="social-link">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" class="social-icon" alt="Instagram">
+                    <span class="text-xs uppercase tracking-widest opacity-80">Instagram</span>
+                </a>
 
-            <div class="text-center md:text-right" data-aos="fade-left">
-                <h4 class="serif text-xl text-yellow-500 mb-4 uppercase tracking-widest">Instant Support</h4>
-                <div class="flex justify-center md:justify-end space-x-8">
-                    <a href="https://wa.me/qr/XS3FJ7MDPORIJ1" target="_blank" class="flex flex-col items-center">
-                        <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" class="social-icon mb-2" alt="WA">
-                        <span class="text-[10px] uppercase tracking-widest opacity-60">WhatsApp</span>
-                    </a>
-                    <a href="https://www.tiktok.com/@sora.collection1?_r=1&_t=ZS-95i67PvzBJ2" target="_blank" class="flex flex-col items-center">
-                        <img src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png" class="social-icon mb-2" alt="TikTok">
-                        <span class="text-[10px] uppercase tracking-widest opacity-60">TikTok</span>
-                    </a>
-                </div>
-            </div>
+                <a href="https://wa.me/qr/XS3FJ7MDPORIJ1" target="_blank" class="social-link">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" class="social-icon" alt="WhatsApp">
+                    <span class="text-xs uppercase tracking-widest opacity-80">WhatsApp</span>
+                </a>
 
+                <a href="https://www.tiktok.com/@sora.collection1?_r=1&_t=ZS-95i67PvzBJ2" target="_blank" class="social-link">
+                    <img src="https://i.ibb.co.com/8L0mK7G/tiktok-icon.png" class="social-icon" alt="TikTok" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3046/3046121.png'">
+                    <span class="text-xs uppercase tracking-widest opacity-80">TikTok</span>
+                </a>
+            </div>
         </div>
     </section>
 
     <footer class="pt-16 pb-8 text-center bg-black/30">
         <img src="https://i.ibb.co.com/4R143dCb/Gemini-Generated-Image-uph57euph57euph5-removebg-preview.png" class="h-20 mx-auto mb-6 brightness-125">
-        <div class="text-gray-300 text-sm space-y-2 mb-8">
+        <div class="text-gray-300 text-sm space-y-2 mb-8 px-5">
             <h4 class="serif text-2xl uppercase tracking-widest text-white mb-4">SORA Collection</h4>
             <p class="font-bold text-red-400 uppercase tracking-widest">Contact Information</p>
             <p>Phone: 01960848956</p>
             <p>Email: soracollection.help@gmail.com</p>
             <p>Address: Rawson Sarak, Chowrasta. Gazipur Sadar, Gazipur 1702</p>
         </div>
-        <p class="text-[9px] text-gray-600 uppercase tracking-[0.4em] mt-10">&copy; 2026 SORA Collection | All Rights Reserved</p>
+        <p class="text-[9px] text-gray-500 uppercase tracking-[0.4em] mt-10">&copy; 2026 SORA Collection | All Rights Reserved</p>
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
