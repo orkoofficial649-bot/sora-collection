@@ -11,203 +11,230 @@
         body { 
             font-family: 'Poppins', 'Hind Siliguri', sans-serif; 
             scroll-behavior: smooth; 
-            background: linear-gradient(135deg, #3d2b1f 0%, #634832 50%, #3d2b1f 100%);
+            background: #1a0f0a; /* Deep dark base */
             color: #f3e5d8;
             overflow-x: hidden; 
         }
         .serif { font-family: 'Playfair Display', serif; }
         .script-font { font-family: 'Great Vibes', cursive; }
         
-        .hero-container {
+        /* Sticky Video Style Effect */
+        .sticky-wrapper {
             position: relative;
+            background: linear-gradient(135deg, #3d2b1f 0%, #634832 50%, #3d2b1f 100%);
+        }
+
+        .hero-container {
+            position: sticky;
+            top: 0;
             width: 100%;
-            height: 70vh;
+            height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
+            z-index: 1;
         }
+
         .hero-image {
             position: absolute;
             top: 0; left: 0;
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: brightness(0.4);
-            z-index: 1;
+            filter: brightness(0.5);
+            transition: transform 0.8s ease-out;
         }
-        .hero-overlay {
+
+        /* Scrolled content container */
+        .scrolling-content {
             position: relative;
             z-index: 10;
-            text-align: center;
-            color: white;
-            padding: 0 20px;
+            background: transparent;
         }
-        .stylish-welcome {
-            font-size: clamp(2.5rem, 8vw, 5rem);
-            color: #ffd700;
-            margin-bottom: -5px;
-        }
-        .brand-name {
-            font-size: clamp(1.8rem, 5vw, 4rem);
-            letter-spacing: 0.15em;
-            text-shadow: 0px 4px 10px rgba(0,0,0,0.5);
-        }
+
         .content-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 2rem;
-            transition: transform 0.3s ease;
+            background: rgba(45, 30, 22, 0.7);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 215, 0, 0.1);
+            border-radius: 2.5rem;
+            transition: all 0.5s ease;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
         }
-        .content-card:hover { transform: translateY(-5px); }
+
+        .content-card:hover { 
+            transform: translateY(-10px) scale(1.02);
+            border-color: rgba(255, 215, 0, 0.3);
+        }
+
         .btn-premium {
             background: linear-gradient(45deg, #b91c1c, #7f1d1d);
             transition: all 0.4s ease;
             box-shadow: 0 10px 20px -5px rgba(185, 28, 28, 0.4);
         }
-        .btn-premium:hover { transform: translateY(-3px); box-shadow: 0 15px 25px -5px rgba(185, 28, 28, 0.6); }
         
         .trust-item {
-            background: rgba(185, 28, 28, 0.1);
+            background: rgba(185, 28, 28, 0.15);
             padding: 1.5rem;
-            border-radius: 1rem;
-            border-left: 4px solid #b91c1c;
+            border-radius: 1.5rem;
+            border-bottom: 3px solid #b91c1c;
+            transition: 0.3s;
         }
-        .social-link {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            transition: transform 0.3s ease;
+        .trust-item:hover { background: rgba(185, 28, 28, 0.25); }
+
+        .social-icon { 
+            width: 50px; 
+            height: 50px; 
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-        .social-link:hover { transform: translateY(-5px); }
-        .social-icon { width: 45px; height: 45px; margin-bottom: 8px; }
+        .social-link:hover .social-icon { transform: scale(1.3) rotate(10deg); }
+
+        /* Floating Animation */
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        .float-img { animation: floating 4s ease-in-out infinite; }
     </style>
 </head>
 <body>
 
-    <header class="hero-container">
-        <img src="https://i.ibb.co.com/G3Tw0XhX/Define-your-grace-every-single-day-1.png" alt="Header Image" class="hero-image">
-        <div class="hero-overlay" data-aos="fade-in" data-aos-duration="1500">
-            <h2 class="script-font stylish-welcome">Welcome to</h2>
-            <h1 class="serif brand-name uppercase font-bold">SORA Collection</h1>
-            <div class="mt-4">
-                <p class="text-xs md:text-lg font-light tracking-[0.3em] uppercase opacity-90 border-y border-white/30 py-2 inline-block">
-                    Choose your product for order
-                </p>
-            </div>
-        </div>
-    </header>
-
-    <main class="max-w-6xl mx-auto py-16 px-5">
-        <div class="grid md:grid-cols-2 gap-10">
-            <div class="text-center" data-aos="fade-up">
-                <div class="overflow-hidden rounded-[2rem] shadow-2xl bg-white/10 content-card">
-                    <img src="https://i.ibb.co.com/NHCtW45/Untitled-design-13.png" alt="Kashmiri Bangles" class="w-full h-80 object-cover rounded-t-[2rem]">
-                    <div class="p-8">
-                        <h2 class="text-2xl serif text-white mb-2">Kashmiri Bangles with 4 Pics Ghungru</h2>
-                        <p class="text-red-400 text-xl font-bold mb-6">Price: 450 Taka</p>
-                        <a href="order.html" class="inline-block btn-premium text-white px-10 py-3 rounded-full font-bold tracking-widest uppercase text-xs">Order Now</a>
-                    </div>
+    <div class="sticky-wrapper">
+        <header class="hero-container" id="hero">
+            <img src="https://i.ibb.co.com/G3Tw0XhX/Define-your-grace-every-single-day-1.png" alt="Header Image" class="hero-image" id="heroImg">
+            <div class="relative z-20 text-center px-5">
+                <h2 class="script-font text-5xl md:text-7xl text-yellow-500 mb-2 drop-shadow-lg">Welcome to</h2>
+                <h1 class="serif text-4xl md:text-7xl uppercase font-bold tracking-widest text-white">SORA Collection</h1>
+                <div class="mt-6">
+                    <p class="text-xs md:text-sm font-light tracking-[0.4em] uppercase opacity-90 border-y border-white/30 py-3 inline-block">
+                        Choose your product for order
+                    </p>
                 </div>
             </div>
+        </header>
 
-            <div class="text-center" data-aos="fade-up" data-aos-delay="100">
-                <div class="overflow-hidden rounded-[2rem] shadow-2xl bg-white/10 content-card">
-                    <img src="https://i.ibb.co.com/vCW1bzNx/Untitled-design-17.png" alt="Velvet Churi" class="w-full h-80 object-cover rounded-t-[2rem]">
-                    <div class="p-8">
-                        <h2 class="text-2xl serif text-white mb-2">Velvet Churi</h2>
-                        <p class="text-red-400 text-xl font-bold mb-6">Price: 200 Taka</p>
-                        <a href="order.html" class="inline-block btn-premium text-white px-10 py-3 rounded-full font-bold tracking-widest uppercase text-xs">Order Now</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <section class="max-w-5xl mx-auto py-10 px-5">
-        <div class="mb-16 rounded-[2.5rem] overflow-hidden shadow-2xl" data-aos="fade-in">
-            <img src="https://i.ibb.co.com/x9b5x1F/Discover-the-finest-collection-of-authentic-sarees-and-handcrafted-Kashmiri-bangles-designed-to-defi.png" alt="Sora Collection Banner" class="w-full">
-        </div>
-
-        <div class="space-y-16">
-            <div class="content-card p-8 md:p-12" data-aos="fade-up">
-                <h3 class="text-2xl md:text-3xl serif text-red-400 mb-6 border-b border-white/10 pb-4">আমাদের শাড়ি কালেকশন: ঐতিহ্যের সাথে আভিজাত্যের মিলন</h3>
-                <p class="leading-relaxed text-gray-200">
-                    "একটি শাড়ি কেবল ছয় গজ কাপড় নয়, এটি আমাদের সংস্কৃতির পরিচয়। Sora Collection-এ আমরা প্রতিটি শাড়ি বাছাই করি অত্যন্ত যত্ন সহকারে। আমাদের প্রতিটি জামদানি, সিল্ক এবং কটন শাড়িতে পাবেন নিখুঁত বুনন আর প্রিমিয়াম কোয়ালিটির নিশ্চয়তা। আমরা সরাসরি তাঁতীদের সাথে কাজ করি, যাতে আপনি পান একদম অরিজিনাল পণ্যটি।"
-                </p>
-            </div>
-
-            <div class="content-card p-8 md:p-12 text-right" data-aos="fade-up">
-                <h3 class="text-2xl md:text-3xl serif text-red-400 mb-6 border-b border-white/10 pb-4">কাশ্মীরি ও হ্যান্ডক্রাফটেড চুড়ি: আপনার হাতের শোভা</h3>
-                <p class="leading-relaxed text-gray-200">
-                    "হাতের এক সেট সুন্দর চুড়ি আপনার পুরো সাজকে পূর্ণতা দেয়। Sora Collection-এর সিগনেচার কাশ্মীরি চুড়িগুলো মূলত আমাদের কারিগরদের হাতের জাদুতে তৈরি। প্রতিটি নকশায় আমরা ফুটিয়ে তোলার চেষ্টা করি আভিজাত্য। বাজারে হাজারো নকল চুড়ির ভিড়ে আমরা আপনাকে দিচ্ছি অরিজিনাল মেটেরিয়াল এবং নিখুঁত ফিনিশিংয়ের গ্যারান্টি।"
-                </p>
-            </div>
-
-            <div class="content-card p-8 md:p-12" data-aos="fade-up">
-                <h3 class="text-2xl md:text-3xl serif text-red-400 mb-8 text-center uppercase tracking-widest">কেন আমাদের বিশ্বাস করবেন?</h3>
-                <div class="grid md:grid-cols-1 lg:grid-cols-3 gap-6">
-                    <div class="trust-item">
-                        <h4 class="font-bold text-white mb-2 italic">১০০% কোয়ালিটি কন্ট্রোল</h4>
-                        <p class="text-sm text-gray-300">প্রতিটি প্রোডাক্ট ডেলিভারির আগে আমরা ৩ বার কোয়ালিটি চেক করি। কোনো ত্রুটিপূর্ণ পণ্য আমাদের গুদাম থেকে বের হয় না।</p>
-                    </div>
-                    <div class="trust-item">
-                        <h4 class="font-bold text-white mb-2 italic">সরাসরি সংগ্রহ</h4>
-                        <p class="text-sm text-gray-300">আমরা সরাসরি সোর্স থেকে পণ্য সংগ্রহ করি, তাই আপনি পান সাশ্রয়ী মূল্যে সেরা কোয়ালিটি।</p>
-                    </div>
-                    <div class="trust-item">
-                        <h4 class="font-bold text-white mb-2 italic">স্বচ্ছতা</h4>
-                        <p class="text-sm text-gray-300">আপনি যে ছবি দেখছেন, ঠিক সেই পণ্যটিই আপনার হাতে পৌঁছাবে। বিভ্রান্ত করা আমাদের লক্ষ্য নয়।</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="bg-black/40 py-16 px-5 border-y border-white/10">
-        <div class="max-w-4xl mx-auto text-center" data-aos="zoom-in">
-            <h4 class="serif text-2xl md:text-3xl text-yellow-500 mb-10 uppercase tracking-[0.2em]">Connect with Social Media</h4>
+        <div class="scrolling-content">
             
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 justify-items-center">
-                <a href="https://www.facebook.com/share/1Chw6jaWm3/" target="_blank" class="social-link">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/2021_Facebook_icon.svg" class="social-icon" alt="Facebook">
-                    <span class="text-xs uppercase tracking-widest opacity-80">Facebook</span>
-                </a>
-                
-                <a href="https://www.instagram.com/soracollection.xyz?igsh=MWJzM3V2MzdlZHF5Mg==" target="_blank" class="social-link">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" class="social-icon" alt="Instagram">
-                    <span class="text-xs uppercase tracking-widest opacity-80">Instagram</span>
-                </a>
+            <main class="max-w-6xl mx-auto py-20 px-5">
+                <div class="grid md:grid-cols-2 gap-12">
+                    <div class="text-center" data-aos="fade-up">
+                        <div class="overflow-hidden content-card">
+                            <img src="https://i.ibb.co.com/NHCtW45/Untitled-design-13.png" alt="Kashmiri Bangles" class="w-full h-96 object-cover float-img">
+                            <div class="p-8">
+                                <h2 class="text-2xl serif text-white mb-2">Kashmiri Bangles with 4 Pics Ghungru</h2>
+                                <p class="text-red-400 text-2xl font-bold mb-6">Price: 450 Taka</p>
+                                <a href="order.html" class="inline-block btn-premium text-white px-12 py-4 rounded-full font-bold tracking-widest uppercase text-sm hover:scale-105 transform transition">Order Now</a>
+                            </div>
+                        </div>
+                    </div>
 
-                <a href="https://wa.me/qr/XS3FJ7MDPORIJ1" target="_blank" class="social-link">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" class="social-icon" alt="WhatsApp">
-                    <span class="text-xs uppercase tracking-widest opacity-80">WhatsApp</span>
-                </a>
+                    <div class="text-center" data-aos="fade-up" data-aos-delay="200">
+                        <div class="overflow-hidden content-card">
+                            <img src="https://i.ibb.co.com/vCW1bzNx/Untitled-design-17.png" alt="Velvet Churi" class="w-full h-96 object-cover float-img">
+                            <div class="p-8">
+                                <h2 class="text-2xl serif text-white mb-2">Velvet Churi</h2>
+                                <p class="text-red-400 text-2xl font-bold mb-6">Price: 200 Taka</p>
+                                <a href="order.html" class="inline-block btn-premium text-white px-12 py-4 rounded-full font-bold tracking-widest uppercase text-sm hover:scale-105 transform transition">Order Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
 
-                <a href="https://www.tiktok.com/@sora.collection1?_r=1&_t=ZS-95i67PvzBJ2" target="_blank" class="social-link">
-                    <img src="https://upload.wikimedia.org/wikipedia/en/a/a9/TikTok_logo.svg" class="social-icon" alt="TikTok" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3046/3046121.png'">
-                    <span class="text-xs uppercase tracking-widest opacity-80">TikTok</span>
-                </a>
-            </div>
+            <section class="max-w-5xl mx-auto py-10 px-5">
+                <div class="mb-20 rounded-[3rem] overflow-hidden shadow-2xl border-4 border-white/5" data-aos="zoom-in">
+                    <img src="https://i.ibb.co.com/x9b5x1F/Discover-the-finest-collection-of-authentic-sarees-and-handcrafted-Kashmiri-bangles-designed-to-defi.png" alt="Banner" class="w-full">
+                </div>
+
+                <div class="space-y-20">
+                    <div class="content-card p-10 md:p-16" data-aos="fade-right">
+                        <h3 class="text-2xl md:text-4xl serif text-yellow-500 mb-6 pb-4 border-b border-yellow-500/20">আমাদের শাড়ি কালেকশন: ঐতিহ্যের সাথে আভিজাত্যের মিলন</h3>
+                        <p class="leading-loose text-gray-200 text-lg">
+                            "একটি শাড়ি কেবল ছয় গজ কাপড় নয়, এটি আমাদের সংস্কৃতির পরিচয়। Sora Collection-এ আমরা প্রতিটি শাড়ি বাছাই করি অত্যন্ত যত্ন সহকারে। আমাদের প্রতিটি জামদানি, সিল্ক এবং কটন শাড়িতে পাবেন নিখুঁত বুনন আর প্রিমিয়াম কোয়ালিটির নিশ্চয়তা।"
+                        </p>
+                    </div>
+
+                    <div class="content-card p-10 md:p-16 text-right" data-aos="fade-left">
+                        <h3 class="text-2xl md:text-4xl serif text-yellow-500 mb-6 pb-4 border-b border-yellow-500/20 text-right">কাশ্মীরি ও হ্যান্ডক্রাফটেড চুড়ি: আপনার হাতের শোভা</h3>
+                        <p class="leading-loose text-gray-200 text-lg">
+                            "হাতের এক সেট সুন্দর চুড়ি আপনার পুরো সাজকে পূর্ণতা দেয়। Sora Collection-এর সিগনেচার কাশ্মীরি চুড়িগুলো মূলত আমাদের কারিগরদের হাতের জাদুতে তৈরি। প্রতিটি নকশায় আমরা ফুটিয়ে তোলার চেষ্টা করি আভিজাত্য।"
+                        </p>
+                    </div>
+
+                    <div class="content-card p-10 md:p-16" data-aos="fade-up">
+                        <h2 class="text-3xl md:text-4xl serif text-white mb-12 text-center uppercase tracking-[0.3em]">কেন আমাদের বিশ্বাস করবেন?</h2>
+                        <div class="grid md:grid-cols-3 gap-8">
+                            <div class="trust-item text-center">
+                                <div class="text-yellow-500 text-4xl mb-4">✓</div>
+                                <h4 class="font-bold text-white mb-2">১০০% কোয়ালিটি কন্ট্রোল</h4>
+                                <p class="text-sm text-gray-400">প্রতিটি প্রোডাক্ট ডেলিভারির আগে আমরা ৩ বার চেক করি।</p>
+                            </div>
+                            <div class="trust-item text-center">
+                                <div class="text-yellow-500 text-4xl mb-4">✓</div>
+                                <h4 class="font-bold text-white mb-2">সরাসরি সংগ্রহ</h4>
+                                <p class="text-sm text-gray-400">সরাসরি সোর্স থেকে আনা হয় বলে সেরা দাম নিশ্চিত।</p>
+                            </div>
+                            <div class="trust-item text-center">
+                                <div class="text-yellow-500 text-4xl mb-4">✓</div>
+                                <h4 class="font-bold text-white mb-2">স্বচ্ছতা</h4>
+                                <p class="text-sm text-gray-400">ছবির সাথে পণ্যের মিলের ১০০% গ্যারান্টি।</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="bg-black/60 py-20 px-5 mt-20">
+                <div class="max-w-4xl mx-auto text-center" data-aos="zoom-out">
+                    <h4 class="serif text-3xl text-yellow-500 mb-12 uppercase tracking-[0.25em]">Connect with Social Media</h4>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-10">
+                        <a href="https://www.facebook.com/share/1Chw6jaWm3/" target="_blank" class="flex flex-col items-center social-link">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/2021_Facebook_icon.svg" class="social-icon" alt="FB">
+                            <span class="mt-4 text-xs tracking-widest opacity-70">FACEBOOK</span>
+                        </a>
+                        <a href="https://www.instagram.com/soracollection.xyz?igsh=MWJzM3V2MzdlZHF5Mg==" target="_blank" class="flex flex-col items-center social-link">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" class="social-icon" alt="IG">
+                            <span class="mt-4 text-xs tracking-widest opacity-70">INSTAGRAM</span>
+                        </a>
+                        <a href="https://wa.me/qr/XS3FJ7MDPORIJ1" target="_blank" class="flex flex-col items-center social-link">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" class="social-icon" alt="WA">
+                            <span class="mt-4 text-xs tracking-widest opacity-70">WHATSAPP</span>
+                        </a>
+                        <a href="https://www.tiktok.com/@sora.collection1?_r=1&_t=ZS-95i67PvzBJ2" target="_blank" class="flex flex-col items-center social-link">
+                            <img src="https://upload.wikimedia.org/wikipedia/en/a/a9/TikTok_logo.svg" class="social-icon" alt="TK">
+                            <span class="mt-4 text-xs tracking-widest opacity-70">TIKTOK</span>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <footer class="py-16 text-center bg-black">
+                <img src="https://i.ibb.co.com/4R143dCb/Gemini-Generated-Image-uph57euph57euph5-removebg-preview.png" class="h-24 mx-auto mb-8 hover:scale-110 transition duration-500">
+                <div class="text-gray-400 text-sm space-y-3 mb-10">
+                    <h4 class="serif text-3xl text-white mb-4 tracking-tighter">SORA Collection</h4>
+                    <p class="text-red-500 font-bold tracking-widest uppercase">Contact Info</p>
+                    <p>Phone: 01960848956</p>
+                    <p>Email: soracollection.help@gmail.com</p>
+                    <p>Address: Rawson Sarak, Chowrasta. Gazipur Sadar, Gazipur 1702</p>
+                </div>
+                <p class="text-[10px] text-gray-600 uppercase tracking-[0.5em]">&copy; 2026 SORA Collection | All Rights Reserved</p>
+            </footer>
         </div>
-    </section>
-
-    <footer class="pt-16 pb-8 text-center bg-black/30">
-        <img src="https://i.ibb.co.com/4R143dCb/Gemini-Generated-Image-uph57euph57euph5-removebg-preview.png" class="h-20 mx-auto mb-6 brightness-125">
-        <div class="text-gray-300 text-sm space-y-2 mb-8 px-5">
-            <h4 class="serif text-2xl uppercase tracking-widest text-white mb-4">SORA Collection</h4>
-            <p class="font-bold text-red-400 uppercase tracking-widest">Contact Information</p>
-            <p>Phone: 01960848956</p>
-            <p>Email: soracollection.help@gmail.com</p>
-            <p>Address: Rawson Sarak, Chowrasta. Gazipur Sadar, Gazipur 1702</p>
-        </div>
-        <p class="text-[9px] text-gray-500 uppercase tracking-[0.4em] mt-10">&copy; 2026 SORA Collection | All Rights Reserved</p>
-    </footer>
+    </div>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({ duration: 1000, once: true, easing: 'ease-in-out' });
+        AOS.init({ duration: 1000, once: false });
+
+        // Scroll Effect for Header Parallax
+        window.addEventListener('scroll', function() {
+            const scrollPos = window.pageYOffset;
+            const heroImg = document.getElementById('heroImg');
+            // Background image zooms slightly and fades out as you scroll
+            heroImg.style.transform = 'scale(' + (1 + scrollPos/2000) + ')';
+            heroImg.style.opacity = (1 - scrollPos/800);
+        });
     </script>
 </body>
 </html>
