@@ -11,7 +11,6 @@
         body { 
             font-family: 'Poppins', 'Hind Siliguri', sans-serif; 
             scroll-behavior: smooth; 
-            /* Wooden Gradient Background */
             background: linear-gradient(135deg, #3d2b1f 0%, #634832 50%, #3d2b1f 100%);
             color: #f3e5d8;
             overflow-x: hidden; 
@@ -44,19 +43,16 @@
             color: white;
             padding: 0 20px;
         }
-
         .stylish-welcome {
             font-size: clamp(2.5rem, 8vw, 5rem);
             color: #ffd700;
             margin-bottom: -5px;
         }
-
         .brand-name {
             font-size: clamp(1.8rem, 5vw, 4rem);
             letter-spacing: 0.15em;
             text-shadow: 0px 4px 10px rgba(0,0,0,0.5);
         }
-
         .content-card {
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
@@ -64,23 +60,28 @@
             border-radius: 2rem;
             transition: transform 0.3s ease;
         }
-        
-        .content-card:hover {
-            transform: translateY(-5px);
-        }
-
+        .content-card:hover { transform: translateY(-5px); }
         .btn-premium {
             background: linear-gradient(45deg, #b91c1c, #7f1d1d);
             transition: all 0.4s ease;
             box-shadow: 0 10px 20px -5px rgba(185, 28, 28, 0.4);
         }
         .btn-premium:hover { transform: translateY(-3px); box-shadow: 0 15px 25px -5px rgba(185, 28, 28, 0.6); }
-
         .trust-item {
             background: rgba(185, 28, 28, 0.1);
             padding: 1.5rem;
             border-radius: 1rem;
             border-left: 4px solid #b91c1c;
+        }
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            transition: transform 0.3s ease, filter 0.3s ease;
+            filter: brightness(0) invert(1); /* Makes icons white to match theme */
+        }
+        .social-icon:hover {
+            transform: scale(1.2);
+            filter: none; /* Shows original color on hover */
         }
     </style>
 </head>
@@ -134,53 +135,76 @@
             <div class="content-card p-8 md:p-12" data-aos="fade-up">
                 <h3 class="text-2xl md:text-3xl serif text-red-400 mb-6 border-b border-white/10 pb-4">আমাদের শাড়ি কালেকশন: ঐতিহ্যের সাথে আভিজাত্যের মিলন</h3>
                 <p class="leading-relaxed text-gray-200">
-                    "একটি শাড়ি কেবল ছয় গজ কাপড় নয়, এটি আমাদের সংস্কৃতির পরিচয়। Sora Collection-এ আমরা প্রতিটি শাড়ি বাছাই করি অত্যন্ত যত্ন সহকারে। আমাদের প্রতিটি জামদানি, সিল্ক এবং কটন শাড়িতে পাবেন নিখুঁত বুনন আর প্রিমিয়াম কোয়ালিটির নিশ্চয়তা। আমরা সরাসরি তাঁতীদের সাথে কাজ করি, যাতে আপনি পান একদম অরিজিনাল পণ্যটি। আপনার বিশেষ দিনটিকে আরও রঙিন করে তুলতে আমাদের শাড়িগুলো হতে পারে আপনার সেরা সঙ্গী।"
+                    "একটি শাড়ি কেবল ছয় গজ কাপড় নয়, এটি আমাদের সংস্কৃতির পরিচয়। Sora Collection-এ আমরা প্রতিটি শাড়ি বাছাই করি অত্যন্ত যত্ন সহকারে। আমাদের প্রতিটি জামদানি, সিল্ক এবং কটন শাড়িতে পাবেন নিখুঁত বুনন আর প্রিমিয়াম কোয়ালিটির নিশ্চয়তা।"
                 </p>
             </div>
 
             <div class="content-card p-8 md:p-12 text-right" data-aos="fade-up">
                 <h3 class="text-2xl md:text-3xl serif text-red-400 mb-6 border-b border-white/10 pb-4">কাশ্মীরি ও হ্যান্ডক্রাফটেড চুড়ি: আপনার হাতের শোভা</h3>
                 <p class="leading-relaxed text-gray-200">
-                    "হাতের এক সেট সুন্দর চুড়ি আপনার পুরো সাজকে পূর্ণতা দেয়। Sora Collection-এর সিগনেচার কাশ্মীরি চুড়িগুলো মূলত আমাদের কারিগরদের হাতের জাদুতে তৈরি। প্রতিটি নকশায় আমরা ফুটিয়ে তোলার চেষ্টা করি আভিজাত্য। এই চুড়িগুলো যেমন টেকসই, তেমনি এর উজ্জ্বলতা বজায় থাকে দীর্ঘ সময়। বাজারে হাজারো নকল চুড়ির ভিড়ে আমরা আপনাকে দিচ্ছি অরিজাল মেটেরিয়াল এবং নিখুঁত ফিনিশিংয়ের গ্যারান্টি।"
+                    "Sora Collection-এর সিগনেচার কাশ্মীরি চুড়িগুলো মূলত আমাদের কারিগরদের হাতের জাদুতে তৈরি। বাজারে হাজারো নকল চুড়ির ভিড়ে আমরা আপনাকে দিচ্ছি অরিজাল মেটেরিয়াল এবং নিখুঁত ফিনিশিংয়ের গ্যারান্টি।"
                 </p>
             </div>
 
             <div class="content-card p-8 md:p-12" data-aos="fade-up">
-                <h3 class="text-2xl md:text-3xl serif text-red-400 mb-8 text-center uppercase tracking-widest">কেন আমাদের বিশ্বাস করবেন? (Why Trust Sora Collection?)</h3>
+                <h3 class="text-2xl md:text-3xl serif text-red-400 mb-8 text-center uppercase tracking-widest">কেন আমাদের বিশ্বাস করবেন?</h3>
                 <div class="grid md:grid-cols-1 lg:grid-cols-3 gap-6">
                     <div class="trust-item">
                         <h4 class="font-bold text-white mb-2 italic">১০০% কোয়ালিটি কন্ট্রোল</h4>
-                        <p class="text-sm text-gray-300">প্রতিটি প্রোডাক্ট ডেলিভারির আগে আমরা ৩ বার কোয়ালিটি চেক করি। কোনো ছেঁড়া বা ত্রুটিপূর্ণ পণ্য আমাদের গুদাম থেকে বের হয় না।</p>
+                        <p class="text-sm text-gray-300">প্রতিটি প্রোডাক্ট ডেলিভারির আগে আমরা ৩ বার কোয়ালিটি চেক করি।</p>
                     </div>
                     <div class="trust-item">
                         <h4 class="font-bold text-white mb-2 italic">সরাসরি সংগ্রহ</h4>
-                        <p class="text-sm text-gray-300">আমরা কোনো মধ্যস্বত্বভোগী ছাড়া সরাসরি সোর্স থেকে পণ্য সংগ্রহ করি, তাই আপনি পান সাশ্রয়ী মূল্যে সেরা কোয়ালিটি।</p>
+                        <p class="text-sm text-gray-300">আমরা কোনো মধ্যস্বত্বভোগী ছাড়া সরাসরি সোর্স থেকে পণ্য সংগ্রহ করি।</p>
                     </div>
                     <div class="trust-item">
                         <h4 class="font-bold text-white mb-2 italic">স্বচ্ছতা</h4>
-                        <p class="text-sm text-gray-300">আমাদের ওয়েবসাইটে বা পেজে আপনি যে ছবি দেখছেন, ঠিক সেই পণ্যটিই আপনার হাতে পৌঁছাবে। আমরা কাস্টমারকে বিভ্রান্ত করি না।</p>
+                        <p class="text-sm text-gray-300">আপনি যে ছবি দেখছেন, ঠিক সেই পণ্যটিই আপনার হাতে পৌঁছাবে।</p>
                     </div>
                 </div>
-            </div>
-
-            <div class="text-center py-10" data-aos="fade-in">
-                <p class="text-xl md:text-2xl script-font text-yellow-500 mb-4">A Dream of Elegance</p>
-                <p class="max-w-3xl mx-auto italic text-gray-300">
-                    "Sora Collection-এর শুরু হয়েছিল একটি স্বপ্ন নিয়ে—বাংলাদেশের প্রতিটি নারীর কাছে সাশ্রয়ী মূল্যে প্রিমিয়াম ফ্যাশন পৌঁছে দেওয়া। আমরা বিশ্বাস করি ট্রাস্ট বা বিশ্বাস একদিনে তৈরি হয় না, এটি তৈরি হয় প্রতিটি অর্ডারের সঠিক ডেলিভারির মাধ্যমে।"
-                </p>
             </div>
         </div>
     </section>
 
-    <section class="bg-red-900/40 py-10 px-5 text-center mb-10 border-y border-white/10">
-        <p class="text-white text-lg">যেকোনো প্রয়োজনে আমাদের সরাসরি কল করুন অথবা আমাদের ওয়েবসাইটে লাইভ চ্যাট করুন। আমরা আপনার শপিং অভিজ্ঞতাকে নিরাপদ ও আনন্দদায়ক করতে দায়বদ্ধ।</p>
+    <section class="bg-black/40 py-12 px-5 border-y border-white/10 overflow-hidden">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center space-y-10 md:space-y-0">
+            
+            <div class="text-center md:text-left" data-aos="fade-right">
+                <h4 class="serif text-xl text-yellow-500 mb-4 uppercase tracking-widest">Connect with Social</h4>
+                <div class="flex justify-center md:justify-start space-x-8">
+                    <a href="https://www.facebook.com/share/1Chw6jaWm3/" target="_blank" class="flex flex-col items-center">
+                        <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" class="social-icon mb-2" alt="FB">
+                        <span class="text-[10px] uppercase tracking-widest opacity-60">Facebook</span>
+                    </a>
+                    <a href="https://www.instagram.com/soracollection.xyz?igsh=MWJzM3V2MzdlZHF5Mg==" target="_blank" class="flex flex-col items-center">
+                        <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" class="social-icon mb-2" alt="Insta">
+                        <span class="text-[10px] uppercase tracking-widest opacity-60">Instagram</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="text-center md:text-right" data-aos="fade-left">
+                <h4 class="serif text-xl text-yellow-500 mb-4 uppercase tracking-widest">Instant Support</h4>
+                <div class="flex justify-center md:justify-end space-x-8">
+                    <a href="https://wa.me/qr/XS3FJ7MDPORIJ1" target="_blank" class="flex flex-col items-center">
+                        <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" class="social-icon mb-2" alt="WA">
+                        <span class="text-[10px] uppercase tracking-widest opacity-60">WhatsApp</span>
+                    </a>
+                    <a href="https://www.tiktok.com/@sora.collection1?_r=1&_t=ZS-95i67PvzBJ2" target="_blank" class="flex flex-col items-center">
+                        <img src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png" class="social-icon mb-2" alt="TikTok">
+                        <span class="text-[10px] uppercase tracking-widest opacity-60">TikTok</span>
+                    </a>
+                </div>
+            </div>
+
+        </div>
     </section>
 
     <footer class="pt-16 pb-8 text-center bg-black/30">
         <img src="https://i.ibb.co.com/4R143dCb/Gemini-Generated-Image-uph57euph57euph5-removebg-preview.png" class="h-20 mx-auto mb-6 brightness-125">
         <div class="text-gray-300 text-sm space-y-2 mb-8">
             <h4 class="serif text-2xl uppercase tracking-widest text-white mb-4">SORA Collection</h4>
-            <p class="font-bold text-red-400 uppercase tracking-widest">Contact Us</p>
+            <p class="font-bold text-red-400 uppercase tracking-widest">Contact Information</p>
             <p>Phone: 01960848956</p>
             <p>Email: soracollection.help@gmail.com</p>
             <p>Address: Rawson Sarak, Chowrasta. Gazipur Sadar, Gazipur 1702</p>
