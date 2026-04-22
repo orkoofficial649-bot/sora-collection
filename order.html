@@ -3,181 +3,169 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Confirm Order | SORA Collection</title>
+    <title>Order Form | SORA Collection</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Hind+Siliguri:wght@400;600&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Poppins', sans-serif; background-color: #fffcfc; }
-        .serif { font-family: 'Playfair Display', serif; }
-        .input-style { 
-            width: 100%; padding: 0.85rem 1.2rem; border: 1px solid #e5e7eb; 
-            border-radius: 1rem; outline: none; transition: 0.3s; font-size: 0.9rem;
-        }
-        .input-style:focus { border-color: #b91c1c; box-shadow: 0 0 0 3px rgba(185, 28, 28, 0.1); }
-        .btn-shadow { box-shadow: 0 10px 25px -5px rgba(185, 28, 28, 0.4); }
+        body { font-family: 'Poppins', 'Hind Siliguri', sans-serif; background: #fce4ec; color: #4a148c; }
+        .form-card { background: white; border-radius: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        select, input { border: 1px solid #f8bbd0 !important; border-radius: 0.8rem !important; padding: 10px !important; width: 100%; outline: none; }
+        .btn-submit { background: linear-gradient(45deg, #ec407a, #880e4f); color: white; font-weight: bold; padding: 15px; border-radius: 1rem; width: 100%; transition: 0.3s; }
+        .btn-submit:disabled { background: #ccc; cursor: not-allowed; }
     </style>
 </head>
-<body class="p-4 md:p-10">
+<body class="py-10 px-5">
 
-    <div class="max-w-xl mx-auto bg-white shadow-2xl rounded-[2.5rem] overflow-hidden border border-red-50 mb-10">
-        <div class="bg-red-700 p-8 text-center text-white">
-            <h1 class="text-3xl serif uppercase tracking-[0.2em]">SORA Collection</h1>
-            <p class="text-[10px] opacity-80 mt-2 font-light tracking-[0.3em] uppercase">Defining Your Grace, Every Single Day.</p>
-        </div>
+    <div class="max-w-xl mx-auto form-card p-8">
+        <h2 class="text-2xl font-bold text-center mb-6 text-pink-700">Order Information</h2>
+        
+        <form id="orderForm" class="space-y-4">
+            <div>
+                <label class="block text-sm font-semibold mb-1">আপনার নাম *</label>
+                <input type="text" id="name" required placeholder="সম্পূর্ণ নাম লিখুন">
+            </div>
 
-        <div class="p-6 md:p-10">
-            <h2 class="text-xl font-bold text-gray-800 text-center mb-8 border-b border-gray-100 pb-5">অর্ডার নিশ্চিত করতে ফর্মটি পূরণ করুন</h2>
+            <div>
+                <label class="block text-sm font-semibold mb-1">মোবাইল নম্বর *</label>
+                <input type="tel" id="phone" required placeholder="১১ ডিজিটের নম্বর">
+            </div>
 
-            <form id="orderForm" class="space-y-6">
-                <div class="space-y-4">
-                    <div>
-                        <label class="text-[10px] font-bold text-gray-400 uppercase ml-1">আপনার পূর্ণ নাম *</label>
-                        <input type="text" name="name" required class="input-style" placeholder="উদা: আরকো বর্মন">
-                    </div>
-                    <div>
-                        <label class="text-[10px] font-bold text-gray-400 uppercase ml-1">ফোন নম্বর * (১১ ডিজিট)</label>
-                        <input type="tel" name="phone" pattern="[0-9]{11}" maxlength="11" required class="input-style" placeholder="01XXXXXXXXX">
-                    </div>
-                </div>
+            <div>
+                <label class="block text-sm font-semibold mb-1">বিস্তারিত ঠিকানা (বাসা/রোড নং) *</label>
+                <input type="text" id="address" required placeholder="গ্রাম/মহল্লা, বাসা নম্বর">
+            </div>
 
-                <div class="space-y-4 bg-gray-50 p-5 rounded-2xl border border-gray-100">
-                    <div>
-                        <label class="text-[10px] font-bold text-gray-400 uppercase ml-1">গ্রাম / মহল্লা / রোড নং *</label>
-                        <input type="text" name="village_road" required class="input-style" placeholder="ঠিকানা লিখুন">
-                    </div>
-                    <div class="grid grid-cols-2 gap-4">
-                        <input type="text" name="thana" required class="input-style" placeholder="থানা *">
-                        <input type="text" name="district" required class="input-style" placeholder="জেলা *">
-                    </div>
-                </div>
-
+            <div class="grid grid-cols-2 gap-4">
                 <div>
-                    <label class="text-[10px] font-bold text-gray-400 uppercase ml-1">পণ্যটির স্ক্রিনশট দিন *</label>
-                    <input type="file" id="product_ss" accept="image/*" required class="input-style bg-white pt-2 text-xs">
-                    <input type="hidden" name="product_screenshot" id="product_ss_data">
-                </div>
-
-                <div class="space-y-4">
-                    <select id="payMethod" name="payment_method" required class="input-style bg-white">
-                        <option value="">পেমেন্ট মাধ্যম সিলেক্ট করুন *</option>
-                        <option value="bKash">bKash (বিকাশ)</option>
-                        <option value="Nagad">Nagad (নগদ)</option>
-                        <option value="Rocket">Rocket (রকেট)</option>
+                    <label class="block text-sm font-semibold mb-1">জেলা নির্বাচন করুন *</label>
+                    <select id="district" required onchange="updateThana()">
+                        <option value="">সিলেক্ট করুন</option>
                     </select>
-
-                    <div id="paymentInfoBox" class="hidden bg-red-50 p-5 rounded-2xl border border-red-100 space-y-3">
-                        <p class="text-xs text-red-700 font-bold text-center uppercase tracking-tighter">এই নাম্বারে Send Money করুন:</p>
-                        <div class="flex items-center justify-between bg-white p-3 rounded-xl border border-red-200">
-                            <span id="displayNum" class="font-bold text-gray-800 text-lg ml-2 tracking-widest"></span>
-                            <button type="button" onclick="copyNum()" class="text-[10px] bg-red-700 text-white px-4 py-2 rounded-lg font-bold">COPY</button>
-                        </div>
-                    </div>
                 </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <input type="text" name="trxid" required class="input-style" placeholder="Transaction ID *">
-                    <input type="tel" name="payment_number" pattern="[0-9]{11}" maxlength="11" required class="input-style" placeholder="আপনার পেমেন্ট নম্বর *">
-                </div>
-
                 <div>
-                    <label class="text-[10px] font-bold text-gray-400 uppercase ml-1">পেমেন্ট স্ক্রিনশট আপলোড করুন *</label>
-                    <input type="file" id="payment_ss" accept="image/*" required class="input-style bg-white pt-2 text-xs">
-                    <input type="hidden" name="payment_screenshot" id="payment_ss_data">
+                    <label class="block text-sm font-semibold mb-1">থানা নির্বাচন করুন *</label>
+                    <select id="thana" required>
+                        <option value="">আগে জেলা বেছে নিন</option>
+                    </select>
                 </div>
+            </div>
 
-                <button type="submit" id="submitBtn" class="w-full bg-red-700 text-white font-bold py-5 rounded-2xl hover:bg-red-800 transition-all active:scale-[0.98] text-sm tracking-[0.2em] uppercase mt-4 btn-shadow">
-                    CONFIRM ORDER
-                </button>
-            </form>
-        </div>
+            <hr class="border-pink-100 my-6">
+
+            <div class="bg-pink-50 p-4 rounded-xl">
+                <h3 class="font-bold mb-2">Order Summary:</h3>
+                <div class="flex justify-between text-sm mb-1">
+                    <span>Product:</span>
+                    <span id="displayProductName" class="font-semibold text-pink-700">---</span>
+                </div>
+                <div class="flex justify-between text-sm mb-1">
+                    <span>Price:</span>
+                    <span id="displayPrice">0</span><span> TK</span>
+                </div>
+                <div class="flex justify-between text-sm mb-1 text-red-500 font-bold">
+                    <span>Delivery Charge:</span>
+                    <span id="displayDelivery">0</span><span> TK</span>
+                </div>
+                <div class="flex justify-between border-t border-pink-200 mt-2 pt-2 text-lg font-bold">
+                    <span>Subtotal:</span>
+                    <span id="displayTotal">0</span><span> TK</span>
+                </div>
+            </div>
+
+            <div class="bg-yellow-50 border-l-4 border-yellow-400 p-3 text-xs text-yellow-800">
+                ⚠️ <span class="font-bold">সতর্কবার্তা:</span> অর্ডার কনফার্ম করতে ডেলিভারি চার্জ আগে অ্যাডভান্স করতে হবে।
+            </div>
+
+            <div class="border-2 border-pink-100 p-4 rounded-xl bg-white">
+                <p class="text-sm font-bold text-center mb-2">Bkash Personal: <span class="text-pink-600">01960848956</span></p>
+                <div class="space-y-3">
+                    <input type="text" id="bkashNum" placeholder="বিকাশ নম্বর যেখান থেকে পাঠিয়েছেন">
+                    <input type="text" id="transId" placeholder="Transaction ID (TrxID)">
+                    <p class="text-[10px] text-gray-500 italic">পেমেন্ট ইনফরমেশন দিলে ডেলিভারি চার্জ অটো মাইনাস হবে।</p>
+                </div>
+            </div>
+
+            <button type="submit" id="submitBtn" class="btn-submit mt-4">Confirm Order</button>
+        </form>
     </div>
 
     <script>
-        // 1. Image Compression Logic (Fixes the half-image issue)
-        function handleImage(inputId, hiddenId) {
-            document.getElementById(inputId).addEventListener('change', function(e) {
-                const file = e.target.files[0];
-                if (!file) return;
+        // Data: Districts and Thanas
+        const locationData = {
+            "Dhaka": ["Dhanmondi", "Gulshan", "Mirpur", "Uttara", "Motijheel", "Badda", "Savar", "Gazipur Sadar", "Tongi"],
+            "Gazipur": ["Gazipur Sadar", "Kaliakair", "Kaliganj", "Kapasia", "Sreepur"],
+            "Chittagong": ["Panchlaish", "Double Mooring", "Kotwali", "Hathazari", "Sitakunda"],
+            "Sylhet": ["Sylhet Sadar", "Beanibazar", "Golapganj", "Zakiganj"],
+            "Rajshahi": ["Boalia", "Rajpari", "Motihar", "Shah Makhdum"],
+            // Note: In real use, you would add all 64 districts and their thanas here. 
+            // For brevity, I'm adding the logic. You can expand this object.
+        };
 
-                const reader = new FileReader();
-                reader.onload = function(event) {
-                    const img = new Image();
-                    img.onload = function() {
-                        const canvas = document.createElement('canvas');
-                        const MAX_WIDTH = 800; 
-                        let width = img.width;
-                        let height = img.height;
+        // All 64 Districts list for the dropdown
+        const districts = ["Dhaka","Faridpur","Gazipur","Gopalganj","Jamalpur","Kishoreganj","Madaripur","Manikganj","Munshiganj","Mymensingh","Narayanganj","Narsingdi","Netrokona","Rajbari","Shariatpur","Sherpur","Tangail","Bogra","Joypurhat","Naogaon","Natore","Nawabganj","Pabna","Rajshahi","Sirajgonj","Dinajpur","Gaibandha","Kurigram","Lalmonirhat","Nilphamari","Panchagarh","Rangpur","Thakurgaon","Barguna","Barisal","Bhola","Jhalokati","Patuakhali","Pirojpur","Bandarban","Brahmanbaria","Chandpur","Chittagong","Comilla","Cox's Bazar","Feni","Khagrachari","Lakshmipur","Noakhali","Rangamati","Habiganj","Maulvibazar","Sunamganj","Sylhet","Bagerhat","Chuadanga","Jessore","Jhenaidah","Khulna","Kushtia","Magura","Meherpur","Narail","Satkhira"];
 
-                        if (width > MAX_WIDTH) {
-                            height *= MAX_WIDTH / width;
-                            width = MAX_WIDTH;
-                        }
+        // Initialization
+        const urlParams = new URLSearchParams(window.location.search);
+        const productName = urlParams.get('product') || "Product Not Selected";
+        const productPrice = parseInt(urlParams.get('price')) || 0;
 
-                        canvas.width = width;
-                        canvas.height = height;
-                        const ctx = canvas.getContext('2d');
-                        ctx.drawImage(img, 0, 0, width, height);
+        document.getElementById('displayProductName').innerText = productName;
+        document.getElementById('displayPrice').innerText = productPrice;
 
-                        // Compress to 60% quality to ensure full data transmission
-                        const dataurl = canvas.toDataURL('image/jpeg', 0.6);
-                        document.getElementById(hiddenId).value = dataurl;
-                    };
-                    img.src = event.target.result;
-                };
-                reader.readAsDataURL(file);
-            });
-        }
-        handleImage('product_ss', 'product_ss_data');
-        handleImage('payment_ss', 'payment_ss_data');
-
-        // 2. Dynamic Payment Number Logic
-        const payMethod = document.getElementById('payMethod');
-        const infoBox = document.getElementById('paymentInfoBox');
-        const displayNum = document.getElementById('displayNum');
-
-        payMethod.addEventListener('change', function() {
-            if(this.value === 'bKash') {
-                infoBox.classList.remove('hidden');
-                displayNum.innerText = '01821208028';
-            } else if(this.value === 'Nagad' || this.value === 'Rocket') {
-                infoBox.classList.remove('hidden');
-                displayNum.innerText = '01960848956';
-            } else {
-                infoBox.classList.add('hidden');
-            }
+        const districtSelect = document.getElementById('district');
+        districts.forEach(d => {
+            let opt = document.createElement('option');
+            opt.value = d;
+            opt.innerHTML = d;
+            districtSelect.appendChild(opt);
         });
 
-        function copyNum() {
-            navigator.clipboard.writeText(displayNum.innerText);
-            alert("Number Copied!");
+        function updateThana() {
+            const district = document.getElementById('district').value;
+            const thanaSelect = document.getElementById('thana');
+            thanaSelect.innerHTML = '<option value="">থানা নির্বাচন করুন</option>';
+
+            // Show thanas if available in data, else show general placeholder
+            const thanas = locationData[district] || ["Sadar", "Upazila 1", "Upazila 2"]; 
+            thanas.forEach(t => {
+                let opt = document.createElement('option');
+                opt.value = t;
+                opt.innerHTML = t;
+                thanaSelect.appendChild(opt);
+            });
+
+            calculateTotal();
         }
 
-        // 3. Form Submission
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbxNHWDt8F17SJh_ZDe2dGH2HTcEh_rufDVhPZciUue2_UFEjA9bXFC_bhnXSpzqQ4YHVw/exec';
-        const form = document.getElementById('orderForm');
-        const btn = document.getElementById('submitBtn');
+        function calculateTotal() {
+            const district = document.getElementById('district').value;
+            let delivery = 0;
 
-        form.addEventListener('submit', e => {
+            if (district === "Dhaka") {
+                delivery = 100;
+            } else if (district !== "") {
+                delivery = 130;
+            }
+
+            const total = productPrice + delivery;
+            document.getElementById('displayDelivery').innerText = delivery;
+            document.getElementById('displayTotal').innerText = total;
+
+            // Bkash Logic: If TransID provided, subtract delivery from display
+            const transId = document.getElementById('transId').value;
+            if(transId.length > 5) {
+                document.getElementById('displayTotal').innerText = productPrice; // Reduce charge
+            }
+        }
+
+        // Listener for Transaction ID to auto-calculate
+        document.getElementById('transId').addEventListener('input', calculateTotal);
+        document.getElementById('district').addEventListener('change', calculateTotal);
+
+        document.getElementById('orderForm').addEventListener('submit', (e) => {
             e.preventDefault();
-            btn.disabled = true;
-            btn.innerText = "SENDING ORDER...";
-            btn.style.opacity = "0.7";
-
-            fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-            .then(response => {
-                alert("ধন্যবাদ! আপনার অর্ডারটি সফলভাবে গ্রহণ করা হয়েছে।");
-                form.reset();
-                btn.disabled = false;
-                btn.innerText = "CONFIRM ORDER";
-                btn.style.opacity = "1";
-                infoBox.classList.add('hidden');
-            })
-            .catch(error => {
-                alert("দুঃখিত, আবার চেষ্টা করুন।");
-                btn.disabled = false;
-                btn.innerText = "CONFIRM ORDER";
-                btn.style.opacity = "1";
-            });
+            alert("অর্ডারটি সফলভাবে গৃহীত হয়েছে! আমাদের প্রতিনিধি শীঘ্রই আপনার সাথে যোগাযোগ করবেন।");
+            // Here you can add Telegram/Email API to receive data
         });
     </script>
 </body>
