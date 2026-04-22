@@ -3,39 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Order Form | SORA Collection</title>
+    <title>SORA Collection | Checkout</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Hind+Siliguri:wght@400;600&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Poppins', 'Hind Siliguri', sans-serif; background: #fce4ec; color: #4a148c; }
-        .form-card { background: white; border-radius: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
-        select, input { border: 1px solid #f8bbd0 !important; border-radius: 0.8rem !important; padding: 10px !important; width: 100%; outline: none; }
-        .btn-submit { background: linear-gradient(45deg, #ec407a, #880e4f); color: white; font-weight: bold; padding: 15px; border-radius: 1rem; width: 100%; transition: 0.3s; }
-        .btn-submit:disabled { background: #ccc; cursor: not-allowed; }
+        .form-card { background: white; border-radius: 2rem; box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
+        input, select { border: 1px solid #f8bbd0 !important; border-radius: 0.8rem !important; padding: 12px !important; width: 100%; outline: none; }
+        .btn-submit { background: linear-gradient(45deg, #ec407a, #880e4f); color: white; font-weight: bold; padding: 16px; border-radius: 1rem; width: 100%; transition: 0.4s; }
     </style>
 </head>
-<body class="py-10 px-5">
+<body class="py-8 px-4">
 
-    <div class="max-w-xl mx-auto form-card p-8">
-        <h2 class="text-2xl font-bold text-center mb-6 text-pink-700">Order Information</h2>
+    <div class="max-w-xl mx-auto form-card p-6 md:p-10">
+        <h2 class="text-2xl font-bold text-center text-pink-700 mb-8">অর্ডার কনফার্ম করুন</h2>
         
         <form id="orderForm" class="space-y-4">
             <div>
                 <label class="block text-sm font-semibold mb-1">আপনার নাম *</label>
-                <input type="text" id="name" required placeholder="সম্পূর্ণ নাম লিখুন">
+                <input type="text" id="name" required placeholder="পুরো নাম">
             </div>
-
             <div>
                 <label class="block text-sm font-semibold mb-1">মোবাইল নম্বর *</label>
-                <input type="tel" id="phone" required placeholder="১১ ডিজিটের নম্বর">
+                <input type="tel" id="phone" required placeholder="01XXXXXXXXX">
             </div>
-
             <div>
-                <label class="block text-sm font-semibold mb-1">বিস্তারিত ঠিকানা (বাসা/রোড নং) *</label>
-                <input type="text" id="address" required placeholder="গ্রাম/মহল্লা, বাসা নম্বর">
+                <label class="block text-sm font-semibold mb-1">বিস্তারিত ঠিকানা *</label>
+                <input type="text" id="address" required placeholder="বাসা/রোড/এলাকা">
             </div>
 
-            <div class="grid grid-cols-2 gap-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                     <label class="block text-sm font-semibold mb-1">জেলা নির্বাচন করুন *</label>
                     <select id="district" required onchange="updateThana()">
@@ -50,95 +47,91 @@
                 </div>
             </div>
 
-            <hr class="border-pink-100 my-6">
-
-            <div class="bg-pink-50 p-4 rounded-xl">
-                <h3 class="font-bold mb-2">Order Summary:</h3>
-                <div class="flex justify-between text-sm mb-1">
-                    <span>Product:</span>
-                    <span id="displayProductName" class="font-semibold text-pink-700">---</span>
-                </div>
-                <div class="flex justify-between text-sm mb-1">
-                    <span>Price:</span>
-                    <span id="displayPrice">0</span><span> TK</span>
-                </div>
-                <div class="flex justify-between text-sm mb-1 text-red-500 font-bold">
-                    <span>Delivery Charge:</span>
-                    <span id="displayDelivery">0</span><span> TK</span>
-                </div>
-                <div class="flex justify-between border-t border-pink-200 mt-2 pt-2 text-lg font-bold">
-                    <span>Subtotal:</span>
-                    <span id="displayTotal">0</span><span> TK</span>
-                </div>
-            </div>
-
-            <div class="bg-yellow-50 border-l-4 border-yellow-400 p-3 text-xs text-yellow-800">
-                ⚠️ <span class="font-bold">সতর্কবার্তা:</span> অর্ডার কনফার্ম করতে ডেলিভারি চার্জ আগে অ্যাডভান্স করতে হবে।
-            </div>
-
-            <div class="border-2 border-pink-100 p-4 rounded-xl bg-white">
-                <p class="text-sm font-bold text-center mb-2">Bkash Personal: <span class="text-pink-600">01960848956</span></p>
-                <div class="space-y-3">
-                    <input type="text" id="bkashNum" placeholder="বিকাশ নম্বর যেখান থেকে পাঠিয়েছেন">
-                    <input type="text" id="transId" placeholder="Transaction ID (TrxID)">
-                    <p class="text-[10px] text-gray-500 italic">পেমেন্ট ইনফরমেশন দিলে ডেলিভারি চার্জ অটো মাইনাস হবে।</p>
+            <div class="bg-pink-50 p-5 rounded-2xl mt-6 border border-pink-100">
+                <h3 class="font-bold text-pink-800 mb-2">অর্ডারের বিবরণ:</h3>
+                <div class="space-y-1 text-sm">
+                    <div class="flex justify-between">
+                        <span>পণ্য:</span>
+                        <span id="displayProduct" class="font-bold">---</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span>মূল্য:</span>
+                        <span><span id="displayPrice">0</span> TK</span>
+                    </div>
+                    <div class="flex justify-between text-red-500 font-semibold">
+                        <span>ডেলিভারি চার্জ:</span>
+                        <span>+ <span id="displayDelivery">0</span> TK</span>
+                    </div>
+                    <div class="flex justify-between border-t border-pink-200 mt-2 pt-2 text-lg font-bold">
+                        <span>মোট বিল:</span>
+                        <span><span id="displayTotal">0</span> TK</span>
+                    </div>
                 </div>
             </div>
 
-            <button type="submit" id="submitBtn" class="btn-submit mt-4">Confirm Order</button>
+            <div class="bg-yellow-50 p-3 rounded-lg text-[11px] text-yellow-800">
+                <b>সতর্কবার্তা:</b> অর্ডার কনফার্ম করতে ডেলিভারি চার্জ অগ্রিম প্রদান করতে হবে।
+            </div>
+
+            <div class="border-2 border-pink-100 p-4 rounded-xl">
+                <p class="text-sm font-bold text-center mb-3">বিকাশ পার্সোনাল: 01960848956</p>
+                <input type="text" id="transId" placeholder="Transaction ID লিখুন" class="mb-2" oninput="calculateTotal()">
+                <p class="text-[10px] text-gray-500 italic">পেমেন্ট আইডি দিলে চার্জ বাদ হয়ে যাবে।</p>
+            </div>
+
+            <button type="submit" class="btn-submit">অর্ডার সম্পন্ন করুন</button>
         </form>
     </div>
 
     <script>
-        // Data: Districts and Thanas
-        const locationData = {
-            "Dhaka": ["Dhanmondi", "Gulshan", "Mirpur", "Uttara", "Motijheel", "Badda", "Savar", "Gazipur Sadar", "Tongi"],
-            "Gazipur": ["Gazipur Sadar", "Kaliakair", "Kaliganj", "Kapasia", "Sreepur"],
-            "Chittagong": ["Panchlaish", "Double Mooring", "Kotwali", "Hathazari", "Sitakunda"],
-            "Sylhet": ["Sylhet Sadar", "Beanibazar", "Golapganj", "Zakiganj"],
-            "Rajshahi": ["Boalia", "Rajpari", "Motihar", "Shah Makhdum"],
-            // Note: In real use, you would add all 64 districts and their thanas here. 
-            // For brevity, I'm adding the logic. You can expand this object.
+        // Thana database
+        const thanaData = {
+            "Dhaka": ["Dhanmondi", "Gulshan", "Mirpur", "Uttara", "Motijheel", "Badda", "Savar", "Keraniganj", "Dhamrai", "Nawabganj", "Dohar"],
+            "Gazipur": ["Gazipur Sadar", "Kaliakair", "Kaliganj", "Kapasia", "Sreepur", "Tongi"],
+            "Mymensingh": ["Mymensingh Sadar", "Bhaluka", "Trishal", "Fulpur", "Muktagacha", "Gaffargaon"],
+            "Chittagong": ["Panchlaish", "Double Mooring", "Kotwali", "Sitakunda", "Patiya", "Hathazari"],
+            "Sylhet": ["Sylhet Sadar", "Beanibazar", "Golapganj", "Zakiganj", "Fenchuganj"],
+            "Rajshahi": ["Boalia", "Motihar", "Paba", "Godagari", "Bagmara"]
+            // Onno jela select korle default sadar thana show hobe.
         };
 
-        // All 64 Districts list for the dropdown
         const districts = ["Dhaka","Faridpur","Gazipur","Gopalganj","Jamalpur","Kishoreganj","Madaripur","Manikganj","Munshiganj","Mymensingh","Narayanganj","Narsingdi","Netrokona","Rajbari","Shariatpur","Sherpur","Tangail","Bogra","Joypurhat","Naogaon","Natore","Nawabganj","Pabna","Rajshahi","Sirajgonj","Dinajpur","Gaibandha","Kurigram","Lalmonirhat","Nilphamari","Panchagarh","Rangpur","Thakurgaon","Barguna","Barisal","Bhola","Jhalokati","Patuakhali","Pirojpur","Bandarban","Brahmanbaria","Chandpur","Chittagong","Comilla","Cox's Bazar","Feni","Khagrachari","Lakshmipur","Noakhali","Rangamati","Habiganj","Maulvibazar","Sunamganj","Sylhet","Bagerhat","Chuadanga","Jessore","Jhenaidah","Khulna","Kushtia","Magura","Meherpur","Narail","Satkhira"];
 
-        // Initialization
-        const urlParams = new URLSearchParams(window.location.search);
-        const productName = urlParams.get('product') || "Product Not Selected";
-        const productPrice = parseInt(urlParams.get('price')) || 0;
+        // URL parsing
+        const params = new URLSearchParams(window.location.search);
+        const pName = params.get('product') || "Product Not Found";
+        const pPrice = parseInt(params.get('price')) || 0;
 
-        document.getElementById('displayProductName').innerText = productName;
-        document.getElementById('displayPrice').innerText = productPrice;
+        document.getElementById('displayProduct').innerText = pName;
+        document.getElementById('displayPrice').innerText = pPrice;
 
-        const districtSelect = document.getElementById('district');
+        // Fill Districts
+        const distSelect = document.getElementById('district');
         districts.forEach(d => {
             let opt = document.createElement('option');
             opt.value = d;
-            opt.innerHTML = d;
-            districtSelect.appendChild(opt);
+            opt.innerText = d;
+            distSelect.appendChild(opt);
         });
 
         function updateThana() {
             const district = document.getElementById('district').value;
             const thanaSelect = document.getElementById('thana');
-            thanaSelect.innerHTML = '<option value="">থানা নির্বাচন করুন</option>';
+            thanaSelect.innerHTML = '<option value="">সিলেক্ট করুন</option>';
 
-            // Show thanas if available in data, else show general placeholder
-            const thanas = locationData[district] || ["Sadar", "Upazila 1", "Upazila 2"]; 
-            thanas.forEach(t => {
+            const list = thanaData[district] || [district + " Sadar"];
+            list.forEach(t => {
                 let opt = document.createElement('option');
                 opt.value = t;
-                opt.innerHTML = t;
+                opt.innerText = t;
                 thanaSelect.appendChild(opt);
             });
-
             calculateTotal();
         }
 
         function calculateTotal() {
             const district = document.getElementById('district').value;
+            const transId = document.getElementById('transId').value.trim();
             let delivery = 0;
 
             if (district === "Dhaka") {
@@ -147,25 +140,21 @@
                 delivery = 130;
             }
 
-            const total = productPrice + delivery;
-            document.getElementById('displayDelivery').innerText = delivery;
-            document.getElementById('displayTotal').innerText = total;
+            let total = pPrice + delivery;
 
-            // Bkash Logic: If TransID provided, subtract delivery from display
-            const transId = document.getElementById('transId').value;
-            if(transId.length > 5) {
-                document.getElementById('displayTotal').innerText = productPrice; // Reduce charge
+            if (transId.length > 5) {
+                total = pPrice; // Delivery charge minus
+                document.getElementById('displayDelivery').innerText = "0 (Paid)";
+            } else {
+                document.getElementById('displayDelivery').innerText = delivery;
             }
-        }
 
-        // Listener for Transaction ID to auto-calculate
-        document.getElementById('transId').addEventListener('input', calculateTotal);
-        document.getElementById('district').addEventListener('change', calculateTotal);
+            document.getElementById('displayTotal').innerText = total;
+        }
 
         document.getElementById('orderForm').addEventListener('submit', (e) => {
             e.preventDefault();
-            alert("অর্ডারটি সফলভাবে গৃহীত হয়েছে! আমাদের প্রতিনিধি শীঘ্রই আপনার সাথে যোগাযোগ করবেন।");
-            // Here you can add Telegram/Email API to receive data
+            alert("অর্ডার সফল! আমরা শীঘ্রই কল দিবো।");
         });
     </script>
 </body>
