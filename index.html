@@ -8,49 +8,92 @@
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&family=Hind+Siliguri:wght@400;600&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
-        body { 
-            font-family: 'Poppins', 'Hind Siliguri', sans-serif; 
-            scroll-behavior: smooth; 
+        body {
+            font-family: 'Poppins', 'Hind Siliguri', sans-serif;
+            scroll-behavior: smooth;
             background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 50%, #f48fb1 100%);
             color: #4a148c;
-            overflow-x: hidden; 
+            overflow-x: hidden;
         }
         .serif { font-family: 'Playfair Display', serif; }
         .script-font { font-family: 'Great Vibes', cursive; }
+        
         .hero-container {
-            position: sticky; top: 0; width: 100%; height: 100vh;
-            display: flex; align-items: center; justify-content: center;
-            overflow: hidden; z-index: 1;
+            position: sticky;
+            top: 0;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            z-index: 1;
         }
+
         .hero-image {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            object-fit: cover; filter: brightness(0.6);
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.6);
+            transition: transform 0.1s ease-out;
         }
-        .scrolling-content { position: relative; z-index: 10; }
+
+        .scrolling-content { position: relative; z-index: 10; background: transparent; }
+
         .content-card {
-            background: rgba(255, 255, 255, 0.4); backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.5); border-radius: 2.5rem;
-            transition: all 0.5s ease; box-shadow: 0 15px 35px rgba(244, 143, 177, 0.3);
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 2.5rem;
+            transition: all 0.5s ease;
+            box-shadow: 0 15px 35px rgba(244, 143, 177, 0.3);
             color: #333;
         }
+
         .btn-premium {
             background: linear-gradient(45deg, #ec407a, #880e4f);
-            transition: all 0.4s ease; box-shadow: 0 10px 20px -5px rgba(236, 64, 122, 0.4);
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 20px -5px rgba(236, 64, 122, 0.4);
+            cursor: pointer;
         }
+        .btn-premium:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 25px -5px rgba(236, 64, 122, 0.6);
+        }
+
         .trust-item {
-            background: rgba(255, 255, 255, 0.6); padding: 1.5rem;
-            border-radius: 1.5rem; border-bottom: 4px solid #ec407a;
+            background: rgba(255, 255, 255, 0.6);
+            padding: 1.5rem;
+            border-radius: 1.5rem;
+            border-bottom: 4px solid #ec407a;
+            transition: 0.3s;
         }
+       
         .contact-box {
             background: linear-gradient(145deg, #ffffff, #fce4ec);
-            border-radius: 2rem; padding: 2rem;
+            border-radius: 2rem;
+            padding: 2rem;
             box-shadow: 20px 20px 60px #d1abb7, -20px -20px 60px #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.8);
         }
+
         .contact-item {
-            padding: 1.2rem; border-radius: 1.2rem; background: white;
-            margin-bottom: 1rem; transition: 0.3s; border: 1px solid #f8bbd0;
-            display: block; text-decoration: none;
+            padding: 1.2rem;
+            border-radius: 1.2rem;
+            background: white;
+            margin-bottom: 1rem;
+            transition: 0.3s;
+            border: 1px solid #f8bbd0;
+            display: block;
+            text-decoration: none;
         }
+        .contact-item:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 20px rgba(236, 64, 122, 0.1);
+        }
+
         @keyframes floating {
             0% { transform: translateY(0px); }
             50% { transform: translateY(-15px); }
@@ -65,9 +108,9 @@
         <header class="hero-container" id="hero">
             <img src="https://i.ibb.co.com/G3Tw0XhX/Define-your-grace-every-single-day-1.png" alt="Header Image" class="hero-image" id="heroImg">
             <div class="relative z-20 text-center px-5">
-                <h2 class="script-font text-5xl md:text-7xl text-pink-200 mb-2 drop-shadow-lg">Welcome to</h2>
-                <h1 class="serif text-4xl md:text-7xl uppercase font-bold tracking-widest text-white">SORA Collection</h1>
-                <div class="mt-6">
+                <h2 class="script-font text-5xl md:text-7xl text-pink-200 mb-2 drop-shadow-lg" data-aos="fade-down">Welcome to</h2>
+                <h1 class="serif text-4xl md:text-7xl uppercase font-bold tracking-widest text-white" data-aos="zoom-in">SORA Collection</h1>
+                <div class="mt-6" data-aos="fade-up">
                     <p class="text-xs md:text-sm font-light tracking-[0.4em] uppercase opacity-90 border-y border-white/30 py-3 inline-block text-white">
                         Choose your product for order
                     </p>
@@ -84,7 +127,7 @@
                             <div class="p-8">
                                 <h2 class="text-xl md:text-2xl serif text-gray-800 mb-2">Kashmiri Bangles with 4 Pics Ghungru</h2>
                                 <p class="text-pink-600 text-2xl font-bold mb-6">Price: 450 Taka</p>
-                                <a href="order.html?product=Kashmiri Bangles&price=450" class="inline-block btn-premium text-white px-10 py-4 rounded-full font-bold tracking-widest uppercase text-xs">Order Now</a>
+                                <button onclick="buyNow('Kashmiri Bangles with 4 Pics Ghungru', 450)" class="btn-premium text-white px-10 py-4 rounded-full font-bold tracking-widest uppercase text-xs">Order Now</button>
                             </div>
                         </div>
                     </div>
@@ -95,7 +138,7 @@
                             <div class="p-8">
                                 <h2 class="text-xl md:text-2xl serif text-gray-800 mb-2">Velvet Churi</h2>
                                 <p class="text-pink-600 text-2xl font-bold mb-6">Price: 200 Taka</p>
-                                <a href="order.html?product=Velvet Churi&price=200" class="inline-block btn-premium text-white px-10 py-4 rounded-full font-bold tracking-widest uppercase text-xs">Order Now</a>
+                                <button onclick="buyNow('Velvet Churi', 200)" class="btn-premium text-white px-10 py-4 rounded-full font-bold tracking-widest uppercase text-xs">Order Now</button>
                             </div>
                         </div>
                     </div>
@@ -110,7 +153,12 @@
                 <div class="space-y-16">
                     <div class="content-card p-8 md:p-16" data-aos="fade-right">
                         <h3 class="text-xl md:text-3xl serif text-pink-700 mb-4 pb-4 border-b border-pink-200">আমাদের শাড়ি কালেকশন</h3>
-                        <p class="leading-relaxed text-gray-700 text-sm md:text-base">"একটি শাড়ি কেবল ছয় গজ কাপড় নয়, এটি আমাদের সংস্কৃতির পরিচয়।"</p>
+                        <p class="leading-relaxed text-gray-700 text-sm md:text-base">"একটি শাড়ি কেবল ছয় গজ কাপড় নয়, এটি আমাদের সংস্কৃতির পরিচয়। Sora Collection-এ আমরা প্রতিটি শাড়ি বাছাই করি অত্যন্ত যত্ন সহকারে।"</p>
+                    </div>
+
+                    <div class="content-card p-8 md:p-16 text-right" data-aos="fade-left">
+                        <h3 class="text-xl md:text-3xl serif text-pink-700 mb-4 pb-4 border-b border-pink-200">কাশ্মীরি ও হ্যান্ডক্রাফটেড চুড়ি</h3>
+                        <p class="leading-relaxed text-gray-700 text-sm md:text-base">"হাতের এক সেট সুন্দর চুড়ি আপনার পুরো সাজকে পূর্ণতা দেয়। Sora Collection-এর সিগনেচার কাশ্মীরি চুড়িগুলো মূলত আমাদের কারিগরদের হাতের জাদুতে তৈরি।"</p>
                     </div>
 
                     <div class="content-card p-8 md:p-16" data-aos="fade-up">
@@ -118,15 +166,15 @@
                         <div class="grid md:grid-cols-3 gap-6">
                             <div class="trust-item text-center">
                                 <h4 class="font-bold text-pink-900 mb-2 italic">১০০% কোয়ালিটি কন্ট্রোল</h4>
-                                <p class="text-xs text-gray-600">প্রতিটি প্রোডাক্ট ডেলিভারির আগে আমরা ৩ বার কোয়ালিটি চেক করি।</p>
+                                <p class="text-xs text-gray-600 leading-relaxed">প্রতিটি প্রোডাক্ট ডেলিভারির আগে আমরা ৩ বার কোয়ালিটি চেক করি।</p>
                             </div>
                             <div class="trust-item text-center">
                                 <h4 class="font-bold text-pink-900 mb-2 italic">সরাসরি সংগ্রহ</h4>
-                                <p class="text-xs text-gray-600">আমরা সরাসরি সোর্স থেকে পণ্য সংগ্রহ করি সেরা মূল্যের জন্য।</p>
+                                <p class="text-xs text-gray-600 leading-relaxed">আমরা সরাসরি সোর্স থেকে পণ্য সংগ্রহ করি, তাই আপনি পান সাশ্রয়ী মূল্যে সেরা কোয়ালিটি।</p>
                             </div>
                             <div class="trust-item text-center">
                                 <h4 class="font-bold text-pink-900 mb-2 italic">স্বচ্ছতা</h4>
-                                <p class="text-xs text-gray-600">আপনি যে ছবি দেখছেন, ঠিক সেই পণ্যটিই আপনার হাতে পৌঁছাবে।</p>
+                                <p class="text-xs text-gray-600 leading-relaxed">আপনি যে ছবি দেখছেন, ঠিক সেই পণ্যটিই আপনার হাতে পৌঁছাবে।</p>
                             </div>
                         </div>
                     </div>
@@ -137,19 +185,49 @@
                         <h2 class="serif text-2xl md:text-3xl text-pink-800 mb-8 uppercase tracking-widest">Contact Information</h2>
                         <div class="space-y-4">
                             <a href="tel:01960848956" class="contact-item">
-                                <p class="text-pink-600 font-bold uppercase text-[10px] mb-1">Call Us</p>
-                                <p class="text-lg text-gray-800 font-semibold">01960848956</p>
+                                <p class="text-pink-600 font-bold uppercase text-[10px] tracking-widest mb-1">Call Us</p>
+                                <p class="text-base md:text-lg text-gray-800 font-semibold">01960848956</p>
                             </a>
                             <a href="mailto:soracollection.help@gmail.com" class="contact-item">
-                                <p class="text-pink-600 font-bold uppercase text-[10px] mb-1">Email Us</p>
-                                <p class="text-sm md:text-lg text-gray-800 font-semibold">soracollection.help@gmail.com</p>
+                                <p class="text-pink-600 font-bold uppercase text-[10px] tracking-widest mb-1">Email Us</p>
+                                <p class="text-sm md:text-lg text-gray-800 font-semibold break-all px-2">soracollection.help@gmail.com</p>
+                            </a>
+                            <a href="https://maps.app.goo.gl/YfS7F7aXN8vN8Xz99" target="_blank" class="contact-item">
+                                <p class="text-pink-600 font-bold uppercase text-[10px] tracking-widest mb-1">Visit Us</p>
+                                <p class="text-xs md:text-base text-gray-800 leading-snug">Rawson Sarak, Chowrasta. Gazipur Sadar, Gazipur 1702</p>
+                                <p class="text-[9px] text-pink-400 mt-2 italic">Click to open Google Maps</p>
                             </a>
                         </div>
                     </div>
                 </div>
             </section>
 
+            <section class="py-20 px-5">
+                <div class="max-w-4xl mx-auto text-center" data-aos="zoom-in">
+                    <h4 class="serif text-xl md:text-2xl text-pink-800 mb-10 uppercase tracking-widest">Connect with Social Media</h4>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                        <a href="https://www.facebook.com/share/1Chw6jaWm3/" target="_blank" class="flex flex-col items-center group">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/2021_Facebook_icon.svg" class="w-10 h-10 group-hover:scale-110 transition" alt="FB">
+                            <span class="mt-2 text-[9px] font-bold text-pink-700">FACEBOOK</span>
+                        </a>
+                        <a href="https://www.instagram.com/soracollection.xyz?igsh=MWJzM3V2MzdlZHF5Mg==" target="_blank" class="flex flex-col items-center group">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" class="w-10 h-10 group-hover:scale-110 transition" alt="IG">
+                            <span class="mt-2 text-[9px] font-bold text-pink-700">INSTAGRAM</span>
+                        </a>
+                        <a href="https://wa.me/8801960848956" target="_blank" class="flex flex-col items-center group">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" class="w-10 h-10 group-hover:scale-110 transition" alt="WA">
+                            <span class="mt-2 text-[9px] font-bold text-pink-700">WHATSAPP</span>
+                        </a>
+                        <a href="https://www.tiktok.com/@sora.collection1?_r=1&_t=ZS-95i67PvzBJ2" target="_blank" class="flex flex-col items-center group">
+                            <img src="https://upload.wikimedia.org/wikipedia/en/a/a9/TikTok_logo.svg" class="w-10 h-10 group-hover:scale-110 transition" alt="TK">
+                            <span class="mt-2 text-[9px] font-bold text-pink-700">TIKTOK</span>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
             <footer class="py-10 text-center">
+                <img src="https://i.ibb.co.com/4R143dCb/Gemini-Generated-Image-uph57euph57euph5-removebg-preview.png" class="h-16 mx-auto mb-6 opacity-60">
                 <p class="text-[9px] text-pink-900 uppercase tracking-[0.4em]">© 2026 SORA Collection | All Rights Reserved</p>
             </footer>
         </div>
@@ -157,13 +235,27 @@
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
+        // Initialize AOS
         AOS.init({ duration: 1000, once: false });
+
+        // Hero Parallax Effect
         window.addEventListener('scroll', function() {
             const scrollPos = window.pageYOffset;
             const heroImg = document.getElementById('heroImg');
-            heroImg.style.transform = 'scale(' + (1 + scrollPos/2500) + ')';
-            heroImg.style.opacity = (1 - scrollPos/900);
+            if(heroImg) {
+                heroImg.style.transform = 'scale(' + (1 + scrollPos/2500) + ')';
+                heroImg.style.opacity = (1 - scrollPos/900);
+            }
         });
+
+        // Function to handle "Order Now" and fix "Product Not Found"
+        function buyNow(productName, price) {
+            // Save data to localStorage so order.html can find it
+            localStorage.setItem('selectedProductName', productName);
+            localStorage.setItem('selectedProductPrice', price);
+            // Redirect to order page
+            window.location.href = 'order.html';
+        }
     </script>
 </body>
 </html>
