@@ -7,18 +7,25 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Hind+Siliguri:wght@400;600&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Poppins', 'Hind Siliguri', sans-serif; background: #fce4ec; color: #4a148c; }
-        .form-card { background: white; border-radius: 2rem; box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
-        input, select { border: 1px solid #f8bbd0 !important; border-radius: 0.8rem !important; padding: 12px !important; width: 100%; outline: none; transition: 0.3s; }
+        body { font-family: 'Poppins', 'Hind Siliguri', sans-serif; background: #fff5f8; color: #4a148c; }
+        .form-card { background: white; border-radius: 2rem; box-shadow: 0 20px 40px rgba(236, 64, 122, 0.1); }
+        input, select { border: 1px solid #f8bbd0 !important; border-radius: 0.8rem !important; padding: 12px !important; width: 100%; outline: none; transition: 0.3s; background: #fff; }
         input:focus, select:focus { border-color: #ec407a !important; box-shadow: 0 0 0 3px rgba(236, 64, 122, 0.1); }
-        .btn-submit { background: linear-gradient(45deg, #ec407a, #880e4f); color: white; font-weight: bold; padding: 16px; border-radius: 1rem; width: 100%; cursor: pointer; }
+        .btn-submit { background: linear-gradient(45deg, #ec407a, #880e4f); color: white; font-weight: bold; padding: 16px; border-radius: 1rem; width: 100%; cursor: pointer; transition: 0.3s; }
+        .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(236, 64, 122, 0.4); }
+        .brand-logo { width: 80px; height: 80px; object-fit: contain; margin-bottom: 10px; }
     </style>
 </head>
 <body class="py-8 px-4">
 
     <div class="max-w-2xl mx-auto form-card p-6 md:p-10">
-        <h2 class="text-2xl md:text-3xl font-bold text-center text-pink-700 mb-8">অর্ডার কনফার্ম করুন</h2>
-        
+        <div class="flex flex-col items-center mb-8">
+            <img src="logo.png" alt="SORA Logo" class="brand-logo"> <h1 class="text-3xl font-bold text-pink-700 tracking-tight">SORA COLLECTION</h1>
+            <div class="h-1 w-20 bg-pink-500 rounded-full mt-2"></div>
+        </div>
+
+        <h2 class="text-xl md:text-2xl font-bold text-center text-gray-700 mb-8">অর্ডার কনফার্ম করুন</h2>
+       
         <form id="orderForm" class="space-y-5">
             <div class="grid md:grid-cols-2 gap-4">
                 <div>
@@ -73,24 +80,34 @@
                 </div>
             </div>
 
-            <div class="border-2 border-pink-200 p-6 rounded-2xl bg-white space-y-4">
-                <h3 class="font-bold text-center text-gray-800">পেমেন্ট (অগ্রিম ডেলিভারি চার্জ)</h3>
-                
-                <select id="payMethod" onchange="updatePaymentInfo()" required>
-                    <option value="">পেমেন্ট মেথড বেছে নিন</option>
-                    <option value="bkash">Bkash (Personal)</option>
-                    <option value="nagad">Nagad (Personal)</option>
-                    <option value="rocket">Rocket (Personal)</option>
-                </select>
+            <div class="border-2 border-pink-100 p-6 rounded-2xl bg-white space-y-4 shadow-sm">
+                <h3 class="font-bold text-center text-gray-800">পেমেন্ট গেটওয়ে (অগ্রিম ডেলিভারি চার্জ)</h3>
+               
+                <div>
+                    <label class="block text-sm font-semibold mb-2">পেমেন্ট মেথড বেছে নিন *</label>
+                    <select id="payMethod" onchange="updatePaymentInfo()" required>
+                        <option value="">সিলেক্ট করুন</option>
+                        <option value="bkash">Bkash (Send Money)</option>
+                        <option value="nagad">Nagad (Send Money)</option>
+                        <option value="rocket">Rocket (Send Money)</option>
+                    </select>
+                </div>
 
-                <div id="paymentDetails" class="hidden bg-yellow-50 p-4 rounded-xl text-center border border-yellow-200">
-                    <p class="text-sm">নিচের নাম্বারে <span class="font-bold text-pink-600" id="chargeAmount"></span> টাকা <span class="font-bold">Send Money</span> করুন:</p>
-                    <p class="text-2xl font-bold text-gray-800 my-2" id="targetNumber">00000000000</p>
+                <div id="paymentDetails" class="hidden bg-pink-50 p-4 rounded-xl text-center border border-pink-100">
+                    <p class="text-sm font-medium">নিচের নাম্বারে <span class="font-bold text-pink-600" id="chargeAmount"></span> টাকা পাঠিয়ে দিন:</p>
+                    <p class="text-2xl font-bold text-gray-800 my-2 tracking-wider" id="targetNumber">00000000000</p>
                 </div>
 
                 <div class="grid md:grid-cols-2 gap-4">
-                    <input type="text" id="senderNum" placeholder="আপনার নম্বর">
-                    <input type="file" id="screenshot" accept="image/*" class="text-xs">
+                    <div>
+                        <label class="block text-sm font-semibold mb-2">আপনার পেমেন্ট নম্বর *</label>
+                        <p class="text-[10px] text-pink-600 mb-1 font-bold">আপনি যে নম্বর থেকে পেমেন্ট send money করেছেন সেই নম্বরটি দিন</p>
+                        <input type="text" id="senderNum" placeholder="আপনার বিকাশ/নগদ নম্বর">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold mb-2">পেমেন্ট স্ক্রিনশট (ঐচ্ছিক)</label>
+                        <input type="file" id="screenshot" accept="image/*" class="text-xs">
+                    </div>
                 </div>
             </div>
 
@@ -99,20 +116,42 @@
     </div>
 
     <script>
-        // Data from URL
-        const params = new URLSearchParams(window.location.search);
-        const pName = params.get('product') || "Product Not Found";
-        const pPrice = parseInt(params.get('price')) || 0;
+        // PDF থেকে নেওয়া সব জেলা এবং থানা তথ্য 
+        const locationData = {
+            "Dhaka": ["Saturia", "Kotwali Thana", "Mohammadpur Thana", "Lalbagh Thana", "Sutrapur Thana", "Motijgil Thana", "Demra Thana", "Sabujbagh Thana", "Mirpur Thana", "Gulshan Thana", "Uttara Thana", "Pallabi Thana", "Cantonment Thana", "Dhanmondi Thana", "Tejgaon Thana", "Ramna Thana", "Keranigonj", "Dohar", "Nawabgonj", "Savar", "Dhamrai"],
+            "Gazipur": ["Sadar Upozila", "Tongi Upozila", "Kaligonj Upozila", "Kaliakoir Upozila", "Kapashia Upozila", "Sreepur Upozila"],
+            "Norshingdi": ["Sadar Upozila", "Monorhordi Upozila", "Shibpur Upozila", "Palash Upozila", "Belab Upozila", "Raipura Upozila"],
+            "Narayangonj": ["Sadar Upozila", "Bandor Upozila", "Sonargaon Upozila", "Arai Hazar Upozila", "Rupgonj Upozila"],
+            "Sylhet": ["Sadar Upozila", "Gopalgonj Upozila", "Biwanibazar Upozila", "Jokigonj Upozila", "Companigonj Upozila", "Jaintapur Upozila", "Daxin Surma Upozila", "Fenchugonj Upozila", "Bishwana Thana Upozila", "Balagonj Upozila", "Gowainghat Upozila", "Kanaighat Upozila"],
+            "Chittagong": ["Kotwali Thana", "Panchlaish Thana", "Chandgaon Thana", "Bandor Thana", "Pahartoli Thana", "Double Muring Thana", "Anwara Upozila", "Putia Upozila", "Boalkhali Upozila", "Satkania Upozila", "Chanda Naish Upozila", "Bash Khali Upozila", "Lohagora Upozila", "Sandip Upozila", "Hathazari Upozila", "Mirasharai Upozila", "Fatik Chari Upozila", "Rangunia Upozila", "Sitakundu Upozila", "Raujan Upozila"],
+            "Mymensingh": ["Sadar Upozila", "Muktagacha Upozila", "Phulbaria Upozila", "Bhaluka Upozila", "Trishal Upozila", "Gofor gaon Upozila", "Nandail Upozila", "Ishwargonj Upozila", "Dhobaura Upozila", "Gouripur Upozila", "Phulpur Upozila", "Haluaghat Upozila", "Tarakanda"],
+            "Faridpur": ["Sadar Upozila", "Boalmari Upozila", "Sadarpur Upozila", "Char Bhadrashon Upozila", "Bhanga Upozila", "Nagarkanda Upozila", "Madhukhali Upozila", "Alphadanga Upozila", "SalThanaa Upozila"],
+            "Rajbari": ["Sadar Upozila", "Pangsha Upozila", "Goalondo Upozila", "Kalukhali Upozila", "Baliakandi Upozila"],
+            "Gopalgonj": ["Sadar Upozila", "kashiani Upozila", "Tongipara Upozila", "Muksudpur Upozila", "Kotalipara Upozila"],
+            "Madaripur": ["Sadar Upozila", "Kalkini Upozila", "Rajoir Upozila"],
+            "Sariyatpur": ["Shibchar Upozila", "Sadar Upozila", "Damudda Upozila", "Noria Upozila", "Jagira Upozila", "Vedorgonj Upozila", "Goshair Hat Upozila"],
+            "Barishal": ["Sadar Upozila", "Muladi Upozila", "Gournadi Upozila", "Agoil Jhora Upozila", "Hijla Upozila", "Ujirpur Upozila", "Mehedigonj Upozila", "Babugonj Upozila", "Bakergonj Upozila", "Banaripara Upozila"]
+        };
 
-        document.getElementById('displayProductName').innerText = pName;
-        document.getElementById('displayPrice').innerText = pPrice;
+        const districtList = Object.keys(locationData);
 
-        const districtList = ["Dhaka", "Gazipur", "Norshingdi", "Narayangonj", "Munshigonj", "Manikgonj", "Faridpur", "Rajbari", "Gopalgonj", "Madaripur", "Sariyatpur", "Mymensingh", "Chittagong", "Sylhet", "Rajshahi", "Bogra", "Khulna", "Barishal", "Rangpur"].sort();
+        // ১. LocalStorage থেকে প্রোডাক্ট ডাটা লোড
+        const savedName = localStorage.getItem('selectedProductName');
+        const savedPrice = localStorage.getItem('selectedProductPrice');
 
+        if (savedName && savedPrice) {
+            document.getElementById('displayProductName').innerText = savedName;
+            document.getElementById('displayPrice').innerText = savedPrice;
+        } else {
+            document.getElementById('displayProductName').innerText = "Product Not Found!";
+        }
+
+        // ২. জেলা ড্রপডাউন সেটআপ
         const distSelect = document.getElementById('district');
-        districtList.forEach(d => {
+        districtList.sort().forEach(d => {
             let opt = document.createElement('option');
-            opt.value = d; opt.innerText = d;
+            opt.value = d;
+            opt.innerText = d;
             distSelect.appendChild(opt);
         });
 
@@ -121,11 +160,11 @@
             const thanaSelect = document.getElementById('thana');
             thanaSelect.innerHTML = '<option value="">সিলেক্ট করুন</option>';
 
-            // Simple thana mapping (Add more as needed)
-            const thanas = (district === "Dhaka") ? ["Mirpur", "Uttara", "Gulshan", "Dhanmondi", "Motijheel", "Savar"] : ["Sadar Upazila"];
+            const thanas = locationData[district] || ["Sadar Upozila"];
             thanas.forEach(t => {
                 let opt = document.createElement('option');
-                opt.value = t; opt.innerText = t;
+                opt.value = t;
+                opt.innerText = t;
                 thanaSelect.appendChild(opt);
             });
             calculateTotal();
@@ -133,8 +172,14 @@
 
         function calculateTotal() {
             const district = document.getElementById('district').value;
-            let delivery = (district === "Dhaka") ? 100 : 130;
-            if (district === "") delivery = 0;
+            const pPrice = parseInt(savedPrice) || 0;
+            let delivery = 0;
+
+            if (district === "Dhaka") { 
+                delivery = 100; 
+            } else if (district !== "") { 
+                delivery = 130; 
+            }
 
             document.getElementById('displayDelivery').innerText = delivery;
             document.getElementById('displayTotal').innerText = pPrice + delivery;
@@ -150,13 +195,19 @@
                 details.classList.add('hidden');
             } else {
                 details.classList.remove('hidden');
-                target.innerText = (method === "bkash") ? "01821208028" : "01960848956";
+                if (method === "bkash") {
+                    target.innerText = "01821208028";
+                } else {
+                    target.innerText = "01960848956";
+                }
             }
         }
 
         document.getElementById('orderForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            alert("অর্ডার সফলভাবে জমা হয়েছে!");
+            alert("ধন্যবাদ! আপনার অর্ডারটি সফলভাবে জমা হয়েছে।");
+            localStorage.clear();
+            window.location.href = 'index.html';
         });
     </script>
 </body>
