@@ -74,32 +74,23 @@
             </div>
 
             <div class="border-2 border-pink-200 p-6 rounded-2xl bg-white space-y-4">
-                <h3 class="font-bold text-center text-gray-800">পেমেন্ট গেটওয়ে (অগ্রিম ডেলিভারি চার্জ)</h3>
+                <h3 class="font-bold text-center text-gray-800">পেমেন্ট (অগ্রিম ডেলিভারি চার্জ)</h3>
                 
-                <div>
-                    <label class="block text-sm font-semibold mb-2">পেমেন্ট মেথড বেছে নিন *</label>
-                    <select id="payMethod" onchange="updatePaymentInfo()" required>
-                        <option value="">সিলেক্ট করুন</option>
-                        <option value="bkash">Bkash (Send Money)</option>
-                        <option value="nagad">Nagad (Send Money)</option>
-                        <option value="rocket">Rocket (Send Money)</option>
-                    </select>
-                </div>
+                <select id="payMethod" onchange="updatePaymentInfo()" required>
+                    <option value="">পেমেন্ট মেথড বেছে নিন</option>
+                    <option value="bkash">Bkash (Personal)</option>
+                    <option value="nagad">Nagad (Personal)</option>
+                    <option value="rocket">Rocket (Personal)</option>
+                </select>
 
-                <div id="paymentDetails" class="hidden bg-pink-50 p-4 rounded-xl text-center animate-pulse">
-                    <p class="text-sm font-medium">নিচের নাম্বারে <span class="font-bold text-pink-600" id="chargeAmount"></span> টাকা পাঠিয়ে দিন:</p>
+                <div id="paymentDetails" class="hidden bg-yellow-50 p-4 rounded-xl text-center border border-yellow-200">
+                    <p class="text-sm">নিচের নাম্বারে <span class="font-bold text-pink-600" id="chargeAmount"></span> টাকা <span class="font-bold">Send Money</span> করুন:</p>
                     <p class="text-2xl font-bold text-gray-800 my-2" id="targetNumber">00000000000</p>
                 </div>
 
                 <div class="grid md:grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-sm font-semibold mb-2">আপনার পেমেন্ট নম্বর *</label>
-                        <input type="text" id="senderNum" placeholder="যে নম্বর থেকে টাকা পাঠিয়েছেন">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-semibold mb-2">পেমেন্ট স্ক্রিনশট *</label>
-                        <input type="file" id="screenshot" accept="image/*" class="text-xs">
-                    </div>
+                    <input type="text" id="senderNum" placeholder="আপনার নম্বর">
+                    <input type="file" id="screenshot" accept="image/*" class="text-xs">
                 </div>
             </div>
 
@@ -108,41 +99,20 @@
     </div>
 
     <script>
-        // Data from PDF (Simplified mapping) [cite: 17, 18, 19, 20, 21, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32]
-        const locationData = {
-            "Dhaka": ["Savar", "Dhamrai", "Keranigonj", "Nawabgonj", "Dohar", "Kotwali Thana", "Mohammadpur Thana", "Lalbagh Thana", "Sutrapur Thana", "Motijhil Thana", "Demra Thana", "Sabujbagh Thana", "Mirpur Thana", "Gulshan Thana", "Uttara Thana", "Pallabi Thana", "Cantonment Thana", "Dhanmondi Thana", "Tejgaon Thana", "Ramna Thana"],
-            "Gazipur": ["Sadar Upozila", "Tongi Upozila", "kaligonj Upozila", "Kaliakoir Upozila", "Kapashia Upozila", "Sreepur Upozila"],
-            "Norshingdi": ["Sadar Upozila", "Monorhordi Upozila", "Shibpur Upozila", "Palash Upozila", "Belab Upozila", "Raipura Upozila"],
-            "Narayangonj": ["Sadar Upozila", "Bandor Upozila", "Sonargaon Upozila", "Arai Hazar Upozila", "Rupgonj Upozila"],
-            "Munshigonj": ["Sadar Upozila", "Tungibari Upozila", "Louhagonj Upozila", "Sree Nagar Upozila", "Sirajdi Khan Upozila", "Gazaria Upozila"],
-            "Manikgonj": ["Sadar Upozila", "Singair Upozila", "Daulatpur Upozila", "Horirampur Upozila", "Gheor Upozila", "Shibaloy Upozila", "Saturia Upozila"],
-            "Faridpur": ["Sadar Upozila", "Boalmari Upozila", "Sadarpur Upozila", "Char Bhadrashon Upozila", "Bhanga Upozila", "Nagarkanda Upozila", "Madhukhali Upozila", "Alphadanga Upozila", "SalThanaa Upozila"],
-            "Rajbari": ["Sadar Upozila", "Pangsha Upozila", "Goalondo Upozila", "Kalukhali Upozila", "Baliakandi Upozila"],
-            "Gopalgonj": ["Sadar Upozila", "kashiani Upozila", "Tongipara Upozila", "Muksudpur Upozila", "Kotalipara Upozila"],
-            "Madaripur": ["Sadar Upozila", "Kalkini Upozila", "Rajoir Upozila", "Shibchar Upozila"],
-            "Sariyatpur": ["Sadar Upozila", "Damudda Upozila", "Noria Upozila", "Jagira Upozila", "Vedorgonj Upozila", "Goshair Hat Upozila"],
-            "Chittagong": ["Anwara Upozila", "Putia Upozila", "Boalkhali Upozila", "Satkania Upozila", "Chanda Naish Upozila", "Bash Khali Upozila", "Lohagora Upozila", "Sandip Upozila", "HaThanaajari Upozila", "Mirasharai Upozila", "Fatik Chari Upozila", "Rangunia Upozila", "Sitakundu Upozila", "Raujan Upozila", "Kotwali Thana", "Panchlaish Thana", "Chandgaon Thana", "Bandor Thana", "Pahartoli Thana", "Double Muring Thana"],
-            "Comilla": ["Sadar Adarsho Upozila", "Sadar Sou Thana Upozila", "Brahman Para Upozila", "Daoud Kandi Upozila", "Buri Chang Upozila", "Choddo Gram Upozila", "Laksham Upozila", "Monohorgonj Upozila", "Meghna Upozila", "Homna Upozila", "Titas Upozila", "Nangolkot Upozila", "Muradnagar Upozila", "Barura Upozila", "Chandina Upozila", "Dabidar Upozila"],
-            "Mymensingh": ["Sadar Upozila", "Muktagacha Upozila", "Phulbaria Upozila", "Bhaluka Upozila", "Trishal Upozila", "Gofor gaon Upozila", "Nandail Upozila", "Ishwargonj Upozila", "Dhobaura Upozila", "Gouripur Upozila", "Phulpur Upozila", "Haluaghat Upozila", "Tarakanda"],
-            "Sylhet": ["Sadar Upozila", "Gopalgonj Upozila", "Biwanibazar Upozila", "Jokigonj Upozila", "Companigonj Upozila", "Jaintapur Upozila", "Daxin Surma Upozila", "Fenchugonj Upozila", "Bishwana Thana Upozila", "Balagonj Upozila", "Gowainghat Upozila", "Kanaighat Upozila"]
-            // Full 64 list included via array logic below
-        };
-
-        const districtList = ["Dhaka", "Gazipur", "Norshingdi", "Narayangonj", "Munshigonj", "Manikgonj", "Faridpur", "Rajbari", "Gopalgonj", "Madaripur", "Sariyatpur", "Borguna", "Bhola", "Jhaloka Thanai", "Barishal", "Patuakhali", "Perojpur", "Khulna", "Norail", "Magura", "Satkhira", "Bagerhat", "Jhenaidah", "Jessore", "Meherpur", "Chuadanga", "Kushtia", "Sylhet", "Sunamgonj", "Mowlovibazar", "Hobigonj", "Tangail", "Keshoregonj", "Netrokona", "Jamalpur", "Sherpur", "Mymensingh", "Noakhali", "Feni", "Laxmipur", "Chandpur", "B. Baria", "Comilla", "Chittagong", "Cox's Bazar", "Khagrachari", "Bandarbon", "Rangamati", "Bogra", "Pabna", "Rajshahi", "Natore", "Chapai N. Gonj", "Nogaon", "Joipurhat", "Sirajgonj", "Nilphamari", "Thanaakurgaon", "Gaibandha", "Lalmonirhat", "Kurigram", "Dinajpur", "Rangpur", "Panchagarh"];
-
-        // Initialization
+        // Data from URL
         const params = new URLSearchParams(window.location.search);
-        const pName = params.get('product') || "Kashmiri Bangles";
-        const pPrice = parseInt(params.get('price')) || 450;
+        const pName = params.get('product') || "Product Not Found";
+        const pPrice = parseInt(params.get('price')) || 0;
 
         document.getElementById('displayProductName').innerText = pName;
         document.getElementById('displayPrice').innerText = pPrice;
 
+        const districtList = ["Dhaka", "Gazipur", "Norshingdi", "Narayangonj", "Munshigonj", "Manikgonj", "Faridpur", "Rajbari", "Gopalgonj", "Madaripur", "Sariyatpur", "Mymensingh", "Chittagong", "Sylhet", "Rajshahi", "Bogra", "Khulna", "Barishal", "Rangpur"].sort();
+
         const distSelect = document.getElementById('district');
-        districtList.sort().forEach(d => {
+        districtList.forEach(d => {
             let opt = document.createElement('option');
-            opt.value = d;
-            opt.innerText = d;
+            opt.value = d; opt.innerText = d;
             distSelect.appendChild(opt);
         });
 
@@ -151,11 +121,11 @@
             const thanaSelect = document.getElementById('thana');
             thanaSelect.innerHTML = '<option value="">সিলেক্ট করুন</option>';
 
-            const thanas = locationData[district] || ["Sadar Upozila"];
+            // Simple thana mapping (Add more as needed)
+            const thanas = (district === "Dhaka") ? ["Mirpur", "Uttara", "Gulshan", "Dhanmondi", "Motijheel", "Savar"] : ["Sadar Upazila"];
             thanas.forEach(t => {
                 let opt = document.createElement('option');
-                opt.value = t;
-                opt.innerText = t;
+                opt.value = t; opt.innerText = t;
                 thanaSelect.appendChild(opt);
             });
             calculateTotal();
@@ -163,9 +133,8 @@
 
         function calculateTotal() {
             const district = document.getElementById('district').value;
-            let delivery = 0;
-            if (district === "Dhaka") { delivery = 100; }
-            else if (district !== "") { delivery = 130; }
+            let delivery = (district === "Dhaka") ? 100 : 130;
+            if (district === "") delivery = 0;
 
             document.getElementById('displayDelivery').innerText = delivery;
             document.getElementById('displayTotal').innerText = pPrice + delivery;
@@ -181,17 +150,13 @@
                 details.classList.add('hidden');
             } else {
                 details.classList.remove('hidden');
-                if (method === "bkash") {
-                    target.innerText = "01821208028";
-                } else {
-                    target.innerText = "01960848956";
-                }
+                target.innerText = (method === "bkash") ? "01821208028" : "01960848956";
             }
         }
 
         document.getElementById('orderForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            alert("ধন্যবাদ! আপনার অর্ডারটি সফলভাবে জমা হয়েছে। আমাদের প্রতিনিধি আপনাকে কল দিবে।");
+            alert("অর্ডার সফলভাবে জমা হয়েছে!");
         });
     </script>
 </body>
