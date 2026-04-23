@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SORA Collection | Checkout</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Hind+Siliguri:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Poppins', 'Hind Siliguri', sans-serif; background: #fff5f8; color: #4a148c; }
+        .form-card { background: white; border-radius: 2rem; box-shadow: 0 20px 40px rgba(236, 64, 122, 0.1); }
+        input, select { border: 1px solid #f8bbd0 !important; border-radius: 0.8rem !important; padding: 12px !important; width: 100%; outline: none; transition: 0.3s; background: #fff; }
+        input:focus, select:focus { border-color: #ec407a !important; box-shadow: 0 0 0 3px rgba(236, 64, 122, 0.1); }
+        .btn-submit { background: linear-gradient(45deg, #ec407a, #880e4f); color: white; font-weight: bold; padding: 16px; border-radius: 1rem; width: 100%; cursor: pointer; transition: 0.3s; }
+        .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(236, 64, 122, 0.4); }
+        .btn-submit:disabled { background: #ccc; cursor: not-allowed; }
+        .brand-logo { width: 140px; height: auto; margin-bottom: 5px; }
+    </style>
+</head>
+<body class="py-8 px-4">
+
+    <div class="max-w-2xl mx-auto form-card p-6 md:p-10">
+        <div class="flex flex-col items-center mb-8 text-center">
+            <img src="https://i.ibb.co.com/jv80152T/Gemini-Generated-Image-uph57euph57euph5-removebg-preview.png" alt="SORA Logo" class="brand-logo">
+            <h1 class="text-3xl font-bold text-pink-700 tracking-tight">SORA COLLECTION</h1>
+            <p class="text-gray-500 text-sm mt-1">Quality You Can Trust</p>
+            <div class="h-1 w-20 bg-pink-500 rounded-full mt-3"></div>
+        </div>
+
+        <h2 class="text-xl md:text-2xl font-bold text-center text-gray-700 mb-8">অর্ডার কনফার্ম করুন</h2>
+       
+        <form id="orderForm" class="space-y-5">
+            <div class="grid md:grid-cols-2 gap-4">
+                <div>
+                    <label class="block text-sm font-semibold mb-2">আপনার নাম *</label>
+                    <input type="text" id="name" required placeholder="পুরো নাম লিখুন">
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold mb-2">মোবাইল নম্বর *</label>
+                    <input type="tel" id="phone" required placeholder="০১XXXXXXXXX">
+                </div>
+            </div>
+
+            <div>
+                <label class="block text-sm font-semibold mb-2">বিস্তারিত ঠিকানা *</label>
+                <input type="text" id="address" required placeholder="বাসা নং, রোড নং, এলাকা">
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-4">
+                <div>
+                    <label class="block text-sm font-semibold mb-2">জেলা (লিখে সার্চ করুন) *</label>
+                    <input list="districts" id="district" required placeholder="আপনার জেলা খুঁজুন..." onchange="updateThana()">
+                    <datalist id="districts"></datalist>
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold mb-2">থানা/উপজেলা নির্বাচন করুন *</label>
+                    <select id="thana" required>
+                        <option value="">আগে জেলা বেছে নিন</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="bg-pink-50 p-6 rounded-2xl border border-pink-100">
+                <h3 class="font-bold text-pink-800 mb-4 border-b border-pink-200 pb-2">অর্ডারের বিবরণ:</h3>
+                <div class="space-y-2 text-sm">
+                    <div class="flex justify-between">
+                        <span>প্রোডাক্ট:</span>
+                        <span id="displayProductName" class="font-bold text-pink-700">Loading...</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span>মূল্য:</span>
+                        <span class="font-bold"><span id="displayPrice">0</span> TK</span>
+                    </div>
+                    <div class="flex justify-between text-red-500">
+                        <span class="font-semibold">ডেলিভারি চার্জ:</span>
+                        <span class="font-bold">+ <span id="displayDelivery">0</span> TK</span>
+                    </div>
+                    <div class="flex justify-between border-t border-pink-200 mt-3 pt-3 text-lg font-bold text-gray-800">
+                        <span>সর্বমোট বিল:</span>
+                        <span><span id="displayTotal">0</span> TK</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-2 border-pink-100 p-6 rounded-2xl bg-white space-y-4 shadow-sm">
+                <h3 class="font-bold text-center text-gray-800">পেমেন্ট গেটওয়ে (অগ্রিম ডেলিভারি চার্জ)</h3>
+               
+                <div>
+                    <label class="block text-sm font-semibold mb-2">পেমেন্ট মেথড বেছে নিন *</label>
+                    <select id="payMethod" onchange="updatePaymentInfo()" required>
+                        <option value="">সিলেক্ট করুন</option>
+                        <option value="bkash">Bkash (Send Money)</option>
+                        <option value="nagad">Nagad (Send Money)</option>
+                        <option value="rocket">Rocket (Send Money)</option>
+                    </select>
+                </div>
+
+                <div id="paymentDetails" class="hidden bg-pink-50 p-4 rounded-xl text-center border border-pink-100">
+                    <p class="text-sm font-medium">নিচের নাম্বারে <span class="font-bold text-pink-600" id="chargeAmount"></span> টাকা পাঠিয়ে দিন:</p>
+                    <p class="text-2xl font-bold text-gray-800 my-2 tracking-wider" id="targetNumber">00000000000</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-semibold mb-2">আপনার পেমেন্ট নম্বর *</label>
+                        <input type="text" id="senderNum" placeholder="পেমেন্ট নম্বর লিখুন" required>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold mb-2">পেমেন্ট স্ক্রিনশট (ঐচ্ছিক)</label>
+                        <input type="file" id="screenshot" accept="image/*" class="text-xs">
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" id="submitBtn" class="btn-submit uppercase tracking-widest text-sm">Confirm Order</button>
+        </form>
+    </div>
+
+    <script>
+        // ... Location data (same as before) ...
+        const locationData = { "Dhaka": ["Savar", "Dhamrai"], "Chattogram": ["Sadar", "Patiya"], /* Add all other districts here */ };
+
+        // Populate datalist
+        const distList = document.getElementById('districts');
+        Object.keys(locationData).sort().forEach(d => {
+            let opt = document.createElement('option');
+            opt.value = d;
+            distList.appendChild(opt);
+        });
+
+        const savedName = localStorage.getItem('selectedProductName') || "Product";
+        const savedPrice = localStorage.getItem('selectedProductPrice') || 0;
+        document.getElementById('displayProductName').innerText = savedName;
+        document.getElementById('displayPrice').innerText = savedPrice;
+
+        function updateThana() {
+            const district = document.getElementById('district').value;
+            const thanaSelect = document.getElementById('thana');
+            thanaSelect.innerHTML = '<option value="">সিলেক্ট করুন</option>';
+            if (locationData[district]) {
+                locationData[district].forEach(t => {
+                    let opt = document.createElement('option');
+                    opt.value = t; opt.innerText = t;
+                    thanaSelect.appendChild(opt);
+                });
+                calculateTotal();
+            }
+        }
+
+        function calculateTotal() {
+            const district = document.getElementById('district').value;
+            let delivery = district.toLowerCase() === "dhaka" ? 100 : 130;
+            document.getElementById('displayDelivery').innerText = delivery;
+            document.getElementById('displayTotal').innerText = parseInt(savedPrice) + delivery;
+            document.getElementById('chargeAmount').innerText = delivery;
+        }
+
+        function updatePaymentInfo() {
+            const method = document.getElementById('payMethod').value;
+            document.getElementById('paymentDetails').classList.toggle('hidden', method === "");
+            if (method === "bkash") document.getElementById('targetNumber').innerText = "01821208028";
+            else document.getElementById('targetNumber').innerText = "01960848956";
+        }
+
+        // --- IMPORTANT: FORM SUBMIT LOGIC ---
+        document.getElementById('orderForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const btn = document.getElementById('submitBtn');
+            btn.disabled = true;
+            btn.innerText = "Processing...";
+
+            const formData = new FormData();
+            formData.append('name', document.getElementById('name').value);
+            formData.append('phone', document.getElementById('phone').value);
+            formData.append('address', document.getElementById('address').value);
+            formData.append('district', document.getElementById('district').value);
+            formData.append('thana', document.getElementById('thana').value);
+            formData.append('product', savedName);
+            formData.append('total', document.getElementById('displayTotal').innerText);
+            formData.append('method', document.getElementById('payMethod').value);
+            formData.append('sender', document.getElementById('senderNum').value);
+            
+            const fileInput = document.getElementById('screenshot');
+            if (fileInput.files[0]) formData.append('screenshot', fileInput.files[0]);
+
+            // Server-e data pathano
+            fetch('/place-order', {
+                method: 'POST',
+                body: formData 
+            })
+            .then(res => res.json())
+            .then(data => {
+                if(data.success) {
+                    // Ekhanei logic ti update kora hoyeche
+                    localStorage.clear();
+                    window.location.href = 'success.html'; // Order success hole auto welcome page e jabe
+                } else {
+                    alert("দুঃখিত, সমস্যা হয়েছে।");
+                    btn.disabled = false;
+                    btn.innerText = "Confirm Order";
+                }
+            })
+            .catch(err => {
+                console.error(err);
+                alert("সার্ভার ত্রুটি! hotlin-e jogajog korun।");
+                btn.disabled = false;
+                btn.innerText = "Confirm Order";
+            });
+        });
+    </script>
+</body>
+</html>
