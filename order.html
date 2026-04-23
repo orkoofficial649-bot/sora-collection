@@ -100,9 +100,15 @@
                     <p class="text-2xl font-bold text-gray-800 my-2 tracking-wider" id="targetNumber">00000000000</p>
                 </div>
 
-                <div>
-                    <label class="block text-sm font-semibold mb-2">আপনার পেমেন্ট নম্বর *</label>
-                    <input type="text" id="senderNum" placeholder="আপনার পেমent নম্বর" required>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-semibold mb-2">আপনার পেমেন্ট নম্বর *</label>
+                        <input type="text" id="senderNum" placeholder="পেমেন্ট নম্বর লিখুন" required>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold mb-2">পেমেন্ট স্ক্রিনশট (ঐচ্ছিক)</label>
+                        <input type="file" id="screenshot" accept="image/*" class="text-xs">
+                    </div>
                 </div>
             </div>
 
@@ -176,7 +182,6 @@
         };
 
         const distList = document.getElementById('districts');
-        // Sort A-Z population
         Object.keys(locationData).sort().forEach(d => {
             let opt = document.createElement('option');
             opt.value = d;
@@ -234,24 +239,28 @@
             btn.disabled = true;
             btn.innerText = "Processing...";
 
-            const orderData = {
-                name: document.getElementById('name').value,
-                phone: document.getElementById('phone').value,
-                address: document.getElementById('address').value,
-                district: document.getElementById('district').value,
-                thana: document.getElementById('thana').value,
-                productName: savedName,
-                productPrice: savedPrice,
-                deliveryCharge: document.getElementById('displayDelivery').innerText,
-                totalAmount: document.getElementById('displayTotal').innerText,
-                payMethod: document.getElementById('payMethod').value,
-                senderNum: document.getElementById('senderNum').value
-            };
+            // Use FormData for handling file uploads (screenshot)
+            const formData = new FormData();
+            formData.append('name', document.getElementById('name').value);
+            formData.append('phone', document.getElementById('phone').value);
+            formData.append('address', document.getElementById('address').value);
+            formData.append('district', document.getElementById('district').value);
+            formData.append('thana', document.getElementById('thana').value);
+            formData.append('productName', savedName);
+            formData.append('productPrice', savedPrice);
+            formData.append('deliveryCharge', document.getElementById('displayDelivery').innerText);
+            formData.append('totalAmount', document.getElementById('displayTotal').innerText);
+            formData.append('payMethod', document.getElementById('payMethod').value);
+            formData.append('senderNum', document.getElementById('senderNum').value);
+            
+            const fileInput = document.getElementById('screenshot');
+            if (fileInput.files[0]) {
+                formData.append('screenshot', fileInput.files[0]);
+            }
 
             fetch('/place-order', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(orderData)
+                body: formData // No headers needed for FormData
             })
             .then(res => res.json())
             .then(data => {
@@ -267,7 +276,7 @@
             })
             .catch(err => {
                 console.error(err);
-                alert("সার্ভার ত্রুটি!");
+                alert("সার্ভার ত্রুটি! আপনার পেমেন্ট নম্বরটি ঠিক থাকলে চিন্তা করবেন না, আমরা যোগাযোগ করবো।");
                 btn.disabled = false;
                 btn.innerText = "Confirm Order";
             });
