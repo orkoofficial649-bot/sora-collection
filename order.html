@@ -198,6 +198,7 @@
             else document.getElementById('targetNumber').innerText = "01960848956";
         }
 
+        // --- Polished Order Submission ---
         document.getElementById('orderForm').addEventListener('submit', function(e) {
             e.preventDefault();
             const btn = document.getElementById('submitBtn');
@@ -214,28 +215,27 @@
             formData.append('totalAmount', document.getElementById('displayTotal').innerText);
             formData.append('payMethod', document.getElementById('payMethod').value);
             formData.append('senderNum', document.getElementById('senderNum').value);
-            
+           
             const fileInput = document.getElementById('screenshot');
             if (fileInput.files[0]) formData.append('screenshot', fileInput.files[0]);
 
+            // Backend API Call
             fetch('https://sora-collection-backend.onrender.com/place-order', {
                 method: 'POST',
                 body: formData
             })
-            .then(res => res.json())
-            .then(data => {
-                if(data.success) {
+            .then(async res => {
+                const data = await res.json();
+                if(res.ok && data.success) {
                     localStorage.clear();
-                    window.location.href = 'success.html'; 
+                    window.location.href = 'success.html';
                 } else {
-                    alert("দুঃখিত, সমস্যা হয়েছে।");
-                    btn.disabled = false;
-                    btn.innerText = "Confirm Order";
+                    throw new Error(data.message || "Order processing failed.");
                 }
             })
             .catch(err => {
-                console.error(err);
-                alert("সার্ভার ত্রুটি! hotlin-e jogajog korun।");
+                console.error("Order Submit Error:", err);
+                alert("দুঃখিত, সার্ভার ত্রুটি! অনুগ্রহ করে আমাদের সাথে যোগাযোগ করুন।");
                 btn.disabled = false;
                 btn.innerText = "Confirm Order";
             });
