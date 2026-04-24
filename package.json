@@ -15,6 +15,7 @@
     "cors": "^2.8.6",
     "dotenv": "^16.6.1",
     "express": "^4.22.1",
+    "mongoose": "^9.5.0",
     "multer": "^1.4.5-lts.1",
     "nodemailer": "^6.10.1"
   },
@@ -26,5 +27,15 @@
     "sora-collection",
     "backend",
     "nodemailer"
-  ]
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/orkoofficial649-bot/sora-collection.git"
+  },
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/orkoofficial649-bot/sora-collection/issues"
+  },
+  "homepage": "https://github.com/orkoofficial649-bot/sora-collection#readme"
 }
